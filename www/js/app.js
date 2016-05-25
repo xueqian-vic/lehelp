@@ -23,8 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  
   $ionicConfigProvider.platform.ios.tabs.style('standard');
   $ionicConfigProvider.platform.ios.tabs.position('bottom');
   $ionicConfigProvider.platform.android.tabs.style('standard');
