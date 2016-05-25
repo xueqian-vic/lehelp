@@ -1,5 +1,11 @@
 <ion-view view-title="Helps">
   <ion-content class="padding">
     <h2>Welcome to tab-helps</h2>
+    <ion-list>
+      <ion-item ng-repeat="item in items" item="item">
+        <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
+

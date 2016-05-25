@@ -48,3 +48,10 @@ angular.module('starter.services', [])
     }
   };
 });
+angular.module('starter.services', []).factory("Helps",function () {
+  var helps=[{
+    id:0,
+    name:"Ben Sparrow",
+    face:'img/ben.png',
+  }];
+});
