@@ -1,14 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('HelpsCtrl', function($scope) {
+.controller('HelpsCtrl', function($scope,Helps) {
   $scope.items = [
     {id:0},
     {id:1},
     {id:2}
   ];
-  
+  $scope.helps = Helps.all();
+
 })
 
+.controller('HelpDetailCtrl',function ($scope,$stateParams,Helps) {
+  $scope.help = Helps.get($stateParams.helpId);
+})
+
+.controller('HelpCommentsCtrl',function ($scope,Helps) {
+
+})
 .controller('SecondhandsCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {

@@ -53,5 +53,30 @@ angular.module('starter.services', []).factory("Helps",function () {
     id:0,
     name:"Ben Sparrow",
     face:'img/ben.png',
+  },{
+    id:1,
+    name:"Ben Sparrow",
+    face:'img/ben.png',
+  },{
+    id:2,
+    name:"Ben Sparrow",
+    face:'img/ben.png',
+  },{
+    id:0,
+    name:"Ben Sparrow",
+    face:'img/ben.png',
   }];
+  return {
+    all:function () {
+      return helps;
+    },
+    get:function(helpId){
+      for (var i = 0; i < helps.length; i++) {
+        if (helps[i].id === parseInt(helpId)) {
+          return helps[i];
+        }
+      }
+      return null;
+    }
+  }
 });

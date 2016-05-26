@@ -24,7 +24,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  
+
   $ionicConfigProvider.platform.ios.tabs.style('standard');
   $ionicConfigProvider.platform.ios.tabs.position('bottom');
   $ionicConfigProvider.platform.android.tabs.style('standard');
@@ -63,7 +63,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
+    .state('tab.help-detail', {
+      url: '/helps/:helpId',
+      views: {
+        'tab-helps': {
+          templateUrl: 'templates/helps/help-detail.html',
+          controller: 'HelpDetailCtrl'
+        }
+      }
+    })
+    .state('tab.help-comments', {
+      url: '/helpComments/:helpId',
+      views: {
+        'tab-helps': {
+          templateUrl: 'templates/helps/help-comments.html',
+          controller: 'HelpCommentsCtrl'
+        }
+      }
+    })
     .state('tab.secondhands', {
       url: '/secondhands',
       views: {

@@ -1,11 +1,29 @@
-<ion-view view-title="Helps">
-  <ion-content class="padding">
-    <h2>Welcome to tab-helps</h2>
+<ion-view view-title="Chats">
+  <ion-content>
     <ion-list>
-      <ion-item ng-repeat="item in items" item="item">
-        <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-      </ion-item>
+      <div class="list card">
+        <ion-item class="item-remove-animate item-icon-right" ng-repeat="help in helps" type="item-text-wrap" href="#/tab/helps/{{help.id}}">
+          <div class="item item-avatar">
+            <img ng-src="{{help.face}}">
+            <h2>{{help.name}}</h2>
+            <p>16分钟之前</p>
+            <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+            <span class="offer">20元</span>
+          </div>
+          <div class="item item-body">
+            <p>
+              地点:学生公寓;<br>
+              时间:5 16下午三点;<br>
+              联系方式:130223975101<br>
+            </p>
+          </div>
+          <p class="item item-divider">
+            <a href="#tab/help-comments/{{help.id}}" class="ion-ios-chatboxes-outline"></a>
+            <a href="" class="ion-ios-redo-outline"></a>
+            <a href="" class="ion-ios-more-outline"></a>
+          </p>
+        </ion-item>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>
-
