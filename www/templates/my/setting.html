@@ -1,0 +1,44 @@
+<ion-view view-title="设置"  hide-tabs="true">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider"><h4>新消息通知</h4></ion-item>
+      <ion-toggle  ng-model="setting.shake">
+        <h3>震动</h3>
+      </ion-toggle>
+      <ion-toggle  ng-model="setting.ring">
+        <h3>响铃</h3>
+      </ion-toggle>
+
+      <ion-item class="item-divider"><h4>个人资料</h4></ion-item>
+      <ion-item ng-click="getAllImages()">
+        <h3>修改头像</h3>
+      </ion-item>
+      <ion-item ng-click="showPrompt();">
+        <h3>修改密码</h3>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <!--<script id="oldpwd-modal.html" type="text/ng-template">-->
+    <!--<ion-modal-view>-->
+      <!--<ion-header-bar class="bar-positive">-->
+        <!--<h1 class="title">验证原密码</h1>-->
+      <!--</ion-header-bar>-->
+      <!--<ion-content>-->
+
+        <!--<div class="padding">-->
+          <!--<div class="list">-->
+            <!--<label class="item item-input">-->
+              <!--<input ng-model="oldpwd" type="text">-->
+            <!--</label>-->
+            <!--<button class="button button-full button-positive" ng-click="closeModal();">取消</button>-->
+            <!--<button class="button button-full button-positive" href="#/tab/updatepwd">确定</button>-->
+          <!--</div>-->
+        <!--</div>-->
+
+      <!--</ion-content>-->
+    <!--</ion-modal-view>-->
+  <!--</script>-->
+</ion-view>
+
+

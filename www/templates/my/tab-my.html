@@ -1,9 +1,37 @@
-<ion-view view-title="My">
+<ion-view view-title="我的">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
+      <ion-item class="item-avatar-left">
+        <img ng-src="{{currentuser.avatar}}"/>
+        <h3>{{currentuser.username}}</h3>
+        <p>乐帮ID:{{currentuser.id}}</p>
+      </ion-item>
+
+      <ion-item  href="#/tab/myhelps"  class="item-icon-left">
+        <i class=" icon ion-ios-flag"></i>
+        <h3>我的求助</h3>
+      </ion-item>
+
+      <ion-item href="#/tab/mysecondhands"  class="item-icon-left" >
+        <i class=" icon ion-ios-pricetags"></i>
+        <h3>我的二手</h3>
+      </ion-item>
+
+      <ion-item class="item-icon-left ">
+        <i class=" icon ion-card"></i>
+        <h3>我的账户</h3>
+        <i class="badge badge-assertive">{{currentuser.coins}}</i>
+      </ion-item>
+
+      <ion-item  class="item-icon-left" href="#/tab/setting" >
+        <i class=" icon ion-ios-gear"></i>
+        <h3>设置</h3>
+      </ion-item>
+
+      <ion-item   class="item-icon-left" href="#/tab/feedback" >
+        <i class=" icon ion-clipboard"></i>
+        <h3>反馈</h3>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

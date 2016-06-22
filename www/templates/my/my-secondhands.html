@@ -1,8 +1,11 @@
-<ion-view view-title="二手专区" >
+<ion-view view-title="我的二手"  hide-tabs="true" >
+
   <ion-content>
     <ion-list class="list-borderless">
 
-      <ion-item ng-repeat="secondhand in secondhands| orderBy:['status','createtime']"  class="card" href="#/tab/secondhands/{{secondhand.id}}" >
+      <ion-item ng-repeat="secondhand in secondhands | orderBy:['createtime','flag']"  class="card" href="#/tab/mysecondhands/{{secondhand.id}}" >
+      <!--<ion-item ng-repeat="secondhand in secondhands | filter:{'user.id':currentuser.id} | orderBy:['createtime','flag']"  class="card" href="#/tab/mysecondhands/{{secondhand.id}}" >-->
+
         <div class="row">
           <div class="col col-90">
             <div class="item item-avatar-left">
@@ -16,17 +19,19 @@
             <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="secondhand.flag==1">我有</span>
             <br>
             <span class="dark" style="font-size: smaller;border:1px solid #000000;" ng-if="secondhand.status==true">已下架</span>
+            <!--<span class="positive-border light positive-bg" style="font-size: smaller" ng-if="secondhand.status==true"></span>-->
           </div>
         </div>
 
         <div class="item">
-          <p>{{secondhand.detail}}</p>
+          <p >{{secondhand.detail}}</p>
         </div>
 
         <div class="item item-image" ng-if="secondhand.image">
           <img src="{{secondhand.image}}">
         </div>
       </ion-item>
+
 
     </ion-list>
   </ion-content>

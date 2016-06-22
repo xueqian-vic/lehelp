@@ -1,0 +1,25 @@
+<ion-view view-title="修改密码" hide-tabs="true">
+  <ion-nav-buttons side="right">
+    <button class="button button-positive" ng-click="submitnewpwd();">完成</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <form name="updatepwdform">
+      <div class="padding">
+        <div class="list list-borderless">
+          <label class="item item-input">
+            <span class="input-label">乐帮ID</span>
+            <input type="text" disabled="disabled" value="{{currentuser.id}}">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">新密码</span>
+            <input ng-model="newpwd" type="password" placeholder="请输入新密码" id="newpwd">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">重复密码</span>
+            <input ng-model="newpwd_repeat" type="password" placeholder="请输入重复新密码" id="newpwd_repeat">
+          </label>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

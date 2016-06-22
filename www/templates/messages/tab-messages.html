@@ -1,0 +1,19 @@
+<ion-view view-title="消息通知">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-avatar-left" ng-repeat="message in messages" type="item-text-wrap" href="#">
+        <img ng-src="{{message.commenter.avatar}}">
+        <h2>{{message.commenter.username}}</h2>
+        <span style="font-size: smaller" ng-if="!message.isHelper">评论：</span>
+        <p>{{message.detail}}</p>
+        <h5>{{message.createtime}}</h5>
+        <!--&lt;!&ndash;<i class="icon ion-chevron-right icon-accessory"></i>&ndash;&gt;   //向右小箭头-->
+        <!--<img ng-src="{{message.help.image}}" ng-if="message.help.image">-->
+
+        <ion-option-button class="button-assertive" ng-click="">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
