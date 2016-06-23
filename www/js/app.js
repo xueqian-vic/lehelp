@@ -105,6 +105,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       }
     })
 
+    .state('tab.messageshelp-detail', {
+      url: '/messages/:helpId',
+      views: {
+        'tab-messages': {
+          templateUrl: 'templates/messages/help-detail.html',
+          controller: 'HelpsCtrl'
+        }
+      }
+    })
+
   .state('tab.my', {
     url: '/my',
     views: {
@@ -184,7 +194,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/helps');
+  // $urlRouterProvider.otherwise('/tab/helps');
 
 })
 

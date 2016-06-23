@@ -5,11 +5,77 @@ angular.module('starter.controllers', [])
     $rootScope.setting = {shake:true,ring:true};
   })
 
-.controller('HelpsCtrl', function($scope,$stateParams,myHelps) {
+  .controller('registerCtrl', function($scope,$ionicLoading,$location,User) {
+    $scope.register = function () {
+      var username = document.getElementById('username').value;
+      var tele = document.getElementById('tele').value;
+      var password = document.getElementById('password').value;
+      var r_password = document.getElementById('r_password').value;
+      var createtime = new Date();
+      var newuser = {id:'111',username:username,password:password,avatar:'',tele:tele,coins:10,createtime:createtime};
+
+      if(password.trim()==r_password.trim()){
+        $scope.flag = User.add(newuser);
+
+
+        // var expireDate = new Date();
+        // expireDate.setDate(expireDate.getDate() + 1);
+        // Setting a cookie
+
+        // $cookieStore.put('newuser', {id:'111',username:username,password:password,avatar:'',tele:tele,coins:10,createtime:createtime});
+        // $cookieStore.put('name', 'xueqian');
+        //
+        // var xx = $cookieStore.get('name');
+        // console.log('昵称是'+xx);
+
+
+        $ionicLoading.show({
+          template: "注册成功",
+          duration:1000
+        });
+        location.href='index.html#/tab/helps';
+        // $location.path('/tab/helps');
+        console.log($location.absUrl());
+      }else{
+          $ionicLoading.show({
+            template: "两次密码不一致",
+            duration:1000
+          });
+      }
+    }
+  })
+
+.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$ionicPopup,myHelps) {
   $scope.helps = myHelps.all();
   $scope.help = myHelps.get($stateParams.helpId);
-  $scope.helpOrcancel = function (helpId,userId) {
-    // console.log(helperId);
+
+  $scope.helpHim=function (helpId,currentuserid) {
+
+
+    $ionicPopup.confirm({
+        title: "帮助提示",
+        template: "你确定要帮他吗？",
+        okText:"确定",
+        cancelText:'取消',
+      })
+      .then(function(res) {
+        if(res) {
+          var help = myHelps.get(helpId);
+          help.helperId = currentuserid;
+          help.helptime = new Date();
+          help.status = 0;
+          myHelps.update(help);
+          $ionicLoading.show({
+            template: "感谢您的帮助，完成后请线下联系求助者！",
+            duration:2000
+          });
+        } else {
+
+        }
+      });
+
+
+
   }
 })
 
@@ -20,8 +86,25 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('MessagesCtrl', function($scope, Messages) {
+.controller('MessagesCtrl', function($scope,$location, $ionicPopup,Messages) {
   $scope.messages = Messages.all();
+  // $scope.help = myHelps.get($stateParams.helpId);
+  $scope.jump=function (helpId,isHelper,username,tele) {
+    if(isHelper){
+      $scope.showAlert = function() {
+        $ionicPopup.alert({
+          title: "帮助者信息",
+          template: "<p>姓名："+username+"</p><p>联系方式："+tele+"</p>",
+        });
+      }
+      $scope.showAlert();
+
+    }else{
+
+      $location.path('/tab/messages/'+helpId);
+      console.log($location.absUrl());
+    }
+  }
 })
 
 .controller('MyCtrl', function($scope,$ionicPopup,$location,$rootScope,$ionicLoading) {
@@ -112,7 +195,7 @@ angular.module('starter.controllers', [])
   $scope.helpOrcancel = function (helpId, userId) {
     // console.log(helperId);
   };
-  $scope.show = function () {
+  $scope.show = function (helpId) {
 
     // Show the action sheet
     var hideSheet = $ionicActionSheet.show({

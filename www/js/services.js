@@ -21,6 +21,44 @@ angular.module('starter.services', [])
   //       return mediaServices;
   //
   //     } ])
+  .factory('User',function () {
+    var users=[{
+      id:'123',
+      username:'信息学院-薛倩',
+      password:'xq',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:230,
+      createtime:'2016-05-21',
+    },{
+      id:'100',
+      username:'管理学院-张三',
+      password:'111',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:258,
+      createtime:'2016-05-24',
+    }];
+
+    return {
+      all: function() {
+        return users;
+      },
+      get: function(userId) {
+        for (var i = 0; i < users.length; i++) {
+          if (users[i].id === parseInt(userId)) {
+            return users[i];
+          }
+        }
+        return null;
+      },
+      add:function (user) {
+        users.push(user);
+        console.log(users);
+      }
+    };
+
+  })
 .factory('Messages', function() {
   // Might use a resource here that returns a JSON array
 
@@ -32,6 +70,7 @@ angular.module('starter.services', [])
       id:'100',
       username:'管理学院-张三',
       avatar:'img/ben.png',
+      tele:'18859271251',
     },
     help:{
       id: 0,
@@ -49,6 +88,7 @@ angular.module('starter.services', [])
       id:'101',
       username:'经济学院-李四',
       avatar:'img/ben.png',
+      tele:'18859271251',
     },
     help:{
       id: 1,
@@ -66,6 +106,7 @@ angular.module('starter.services', [])
       id:'102',
       username:'数学学院-王五',
       avatar:'img/ben.png',
+      tele:'18859271251',
     },
     help:{
       id: 4,
@@ -103,31 +144,31 @@ angular.module('starter.services', [])
   var helps = [{
     id: 0,
     user:{
-      id:'123',
-      username:'信息学院-薛倩',
+      id:'101',
+      username:'信息学院-101',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:null,
     detail: '0地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-21',
     coins:20,
-    status:false,    //    true/false:已解决/未解决
+    status:-1,    //    true/false:已解决/未解决
     image:'img/bike.jpg',
     helptime:null,   //被帮助时间
   },{
     id: 1,
     user:{
-      id:'123',
-      username:'信息学院-薛倩',
+      id:'102',
+      username:'信息学院-102',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:null,
     detail: '1地点：本部颂恩楼，时间：5.24下午三点半。麻烦帮忙拿一下《哥德巴赫猜想》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-22',
     coins:20,
-    status:false,
+    status:-1,
     image:'img/bike.jpg',
     helptime:null,
   },{
@@ -136,28 +177,28 @@ angular.module('starter.services', [])
       id:'123',
       username:'信息学院-薛倩',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:'111',
     detail: '2地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-21',
     coins:20,
-    status:true,
+    status:0,
     image:null,
     helptime:'2016-05-22',
   },{
     id: 3,
     user:{
-      id:'123',
-      username:'信息学院-薛倩',
+      id:'100',
+      username:'管理学院-张三',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
-    helperId:'111',
+    helperId:'123',
     detail: '3地点：本部颂恩楼，时间：5.24下午三点半。麻烦帮忙拿一下《哥德巴赫猜想》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-22',
     coins:20,
-    status:true,
+    status:0,
     image:null,
     helptime:'2016-05-22',
   },{
@@ -166,28 +207,28 @@ angular.module('starter.services', [])
       id:'123',
       username:'信息学院-薛倩',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:null,
     detail: '4地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-21',
     coins:20,
-    status:false,
+    status:-1,
     image:null,
     helptime:null,
   },{
     id: 5,
     user:{
-      id:'123',
-      username:'信息学院-薛倩',
+      id:'103',
+      username:'信息学院-103',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:'111',
     detail: '5地点：本部颂恩楼，时间：5.24下午三点半。麻烦帮忙拿一下《哥德巴赫猜想》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-22',
     coins:20,
-    status:true,
+    status:1,
     image:null,
     helptime:'2016-05-22',
   },{
@@ -196,13 +237,13 @@ angular.module('starter.services', [])
       id:'123',
       username:'信息学院-薛倩',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:'111',
     detail: '6地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-21',
     coins:20,
-    status:true,
+    status:1,
     image:null,
     helptime:'2016-05-22',
   },{
@@ -211,13 +252,13 @@ angular.module('starter.services', [])
       id:'123',
       username:'信息学院-薛倩',
       avatar:'img/mike.png',
+      tele: '18859271251',
     },
     helperId:'111',
     detail: '7地点：本部颂恩楼，时间：5.24下午三点半。麻烦帮忙拿一下《哥德巴赫猜想》的门票。微信号：xq5525458',
-    tele: '18859271251',
     createtime:'2016-05-22',
     coins:20,
-    status:true,
+    status:1,
     image:null,
     helptime:'2016-05-22',
   }];
@@ -231,6 +272,19 @@ angular.module('starter.services', [])
       for (var i = 0; i < helps.length; i++) {
         if (helps[i].id === parseInt(helpId)) {
           return helps[i];
+        }
+      }
+      return null;
+    },
+    update:function (help) {
+      for (var i = 0; i < helps.length; i++) {
+        if (helps[i].id === parseInt(help.id)) {
+          helps[i].helperId = help.helperId;
+          helps[i].detail = help.detail;
+          helps[i].coins = help.coins;
+          helps[i].status = help.status;
+          helps[i].helptime = help.helptime;
+          console.log(helps[i]);
         }
       }
       return null;
