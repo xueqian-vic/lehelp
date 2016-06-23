@@ -1,8 +1,9 @@
-<ion-view view-title="Chats">
+<ion-view view-title="求助">
   <ion-content>
     <ion-list>
-      <div class="list card">
-        <ion-item class="item-remove-animate item-icon-right" ng-repeat="help in helps" type="item-text-wrap" href="#/tab/helps/{{help.id}}">
+
+        <ion-item class="item-remove-animate item-icon-right" ng-repeat="help in helps" type="item-text-wrap" href="#/tab/chats/{{help.chatId}}">
+          <div class="list card">
           <div class="item item-avatar">
             <img ng-src="{{help.face}}">
             <h2>{{help.name}}</h2>
@@ -18,12 +19,13 @@
             </p>
           </div>
           <p class="item item-divider">
-            <a href="#tab/help-comments/{{help.id}}" class="ion-ios-chatboxes-outline"></a>
+            <a href="#tab/helpComments/{{help.id}}" class="ion-ios-chatboxes-outline"></a>
             <a href="" class="ion-ios-redo-outline"></a>
             <a href="" class="ion-ios-more-outline"></a>
           </p>
+          </div>
         </ion-item>
-      </div>
+
     </ion-list>
   </ion-content>
 </ion-view>

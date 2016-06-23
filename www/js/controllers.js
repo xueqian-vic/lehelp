@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HelpCommentsCtrl',function ($scope,Helps) {
-
+  $scope.comments = Helps.getComments();
 })
 .controller('SecondhandsCtrl', function($scope) {})
 

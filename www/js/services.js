@@ -52,19 +52,42 @@ angular.module('starter.services', []).factory("Helps",function () {
   var helps=[{
     id:0,
     name:"Ben Sparrow",
+    chatId:1,
     face:'img/ben.png',
   },{
     id:1,
     name:"Ben Sparrow",
+    chatId:2,
     face:'img/ben.png',
   },{
     id:2,
     name:"Ben Sparrow",
+    chatId:3,
     face:'img/ben.png',
   },{
-    id:0,
+    id:3,
     name:"Ben Sparrow",
+    chatId:4,
     face:'img/ben.png',
+  }];
+  var comments=[{
+    id:0,
+    name:"小黑",
+    face:'img/ben.png',
+    comment:"让我来吧,下午可以帮你去带",
+    time:"9小时前",
+  },{
+    id:1,
+    name:"小明",
+    face:'img/ben.png',
+    comment:"haode,就这样",
+    time:"10小时前"
+  },{
+    id:2,
+    name:"小王",
+    face:'img/ben.png',
+    comment:'明天拿给你',
+    time:"11小时前"
   }];
   return {
     all:function () {
@@ -77,6 +100,9 @@ angular.module('starter.services', []).factory("Helps",function () {
         }
       }
       return null;
+    },
+    getComments:function (helpId) {
+      return comments;
     }
   }
 });

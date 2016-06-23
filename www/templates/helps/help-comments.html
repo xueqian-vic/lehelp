@@ -1,9 +1,18 @@
-<ion-view view-title="{{chat.name}}">
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
+<ion-view view-title="评论">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="comment in comments" type="item-text-wrap" href="#/tab/helpComments/{{help.id}}">
+        <div class="item item-avatar">
+          <img ng-src="{{comment.face}}">
+          <h2>{{comment.name}}</h2>
+          <span class="offer">{{comment.time}}</span>
+          <p>
+            {{comment.comment}}
+          </p>
+          </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
+
 
