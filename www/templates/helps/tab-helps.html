@@ -1,36 +1,50 @@
 <ion-view view-title="求助专区" >
+  <ion-nav-buttons side="right">
+    <a class="button" href="#/tab/add-help" >发布</a>
+  </ion-nav-buttons>
   <ion-content>
+
     <ion-list class="list-borderless">
-      <ion-item ng-repeat="help in helps | orderBy:['status','createtime']"  class="card" href="#/tab/helps/{{help.id}}">
-        <div class="row">
-          <div class="col col-90">
-            <div class="item item-avatar-left">
-              <img ng-src="{{help.user.avatar}}">
-              <h2>{{help.user.username}}</h2>
-              <h5>{{help.createtime}}</h5>
+
+      <!--<ion-item ng-repeat="help in helps | orderBy:['status','createtime']"  href="#/tab/helps/{{help.id}}">-->
+      <ion-item ng-repeat="help in helps "  href="#/tab/helps/{{help.id}}">
+
+
+         <div class="list card">
+
+          <div class="row">
+            <div class="col col-80">
+              <div class="item item-avatar">
+                <img src="img/mike.png">
+                <h2>xueqian</h2>
+                <p>{{help.createtime}}</p>
+              </div>
+            </div>
+            <div class="col col-20">
+              <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status=='-1'">待帮助</span>
+              <span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status=='0'">帮助中</span>
+              <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status=='1'">已解决</span>
             </div>
           </div>
-          <div class="col col-10">
-            <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status==-1">待帮助</span>
-            <span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status==0">帮助中</span>
-            <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status==1">已解决</span>
+
+          <div class="item item-body">
+            <!--<img class="full-image" src="img/bike.jpg" ng-if="help.image">-->
+            <img class="full-image" src="img/bike.jpg">
+            <p>
+              {{help.detail}}
+            </p>
+            <p>
+              <a class="icon ion-chatbox-working subdued"></a>
+            </p>
           </div>
-        </div>
 
-        <div class="item">
-          <p style="text-wrap:normal">{{help.detail}}</p>
-        </div>
-
-        <div class="item item-image" ng-if="help.image">
-          <img src="{{help.image}}">
-        </div>
-
-        <div class="item">
-          <a class="icon ion-chatbox-working dark"></a>
         </div>
 
       </ion-item>
     </ion-list>
+
+    <!--{{d}}-->
+
   </ion-content>
 </ion-view>
 

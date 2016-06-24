@@ -1,20 +1,21 @@
 <ion-view view-title="二手详情"  hide-tabs="true">
   <ion-content>
-    <ion-item class="card ">
-      <div class="list list-borderless">
-        <div class="item item-avatar-left">
-          <img ng-src="{{secondhand.user.avatar}}">
-          <h2>{{secondhand.user.username}}</h2>
-          <h5>{{secondhand.createtime}}</h5>
-        </div>
-        <div class="item">
-          <p>{{secondhand.detail}}</p>
-        </div>
-        <div class="item item-image" ng-if="secondhand.image">
-          <img src="{{secondhand.image}}">
-        </div>
+
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="{{secondhand.user.avatar}}">
+        <h2>{{secondhand.user.username}}</h2>
+        <p>{{secondhand.createtime}}</p>
       </div>
-    </ion-item>
+
+      <div class="item item-body">
+        <img class="full-image" src="{{secondhand.image}}"  ng-if="secondhand.image">
+        <p>
+          {{secondhand.detail}}
+        </p>
+      </div>
+    </div>
+
   </ion-content>
 
 </ion-view>

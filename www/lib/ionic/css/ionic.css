@@ -5701,7 +5701,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   z-index: 2;
   display: block;
   margin: -1px;
-  padding: 16px;
+  padding: 10px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
@@ -5994,7 +5994,7 @@ button.item.item-complex {
 .item-radio .item-content {
   position: relative;
   z-index: 2;
-  padding: 16px 49px 16px 16px;
+  padding: 10px 10px 10px 10px;
   border: none;
   background-color: #fff; }
 
@@ -6311,8 +6311,8 @@ button.item.item-button-right {
   .item-avatar-left .item-content > img:first-child,
   .item-avatar-left .item-content .item-image {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 8px;
+    left: 8px;
     max-width: 40px;
     max-height: 40px;
     width: 100%;
@@ -6328,8 +6328,8 @@ button.item.item-button-right {
   .item-avatar-right .item-content > img:first-child,
   .item-avatar-right .item-content .item-image {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 8px;
+    right: 8px;
     max-width: 40px;
     max-height: 40px;
     width: 100%;

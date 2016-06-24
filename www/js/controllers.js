@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngResource'])
 
 .run(function($rootScope) {
     $rootScope.currentuser = {id:'123',username:'信息学院-薛倩',password:'xq',avatar:'img/mike.png',coins:230,tele:'18859271251',createtime:'2016-05-21'};
@@ -45,13 +45,55 @@ angular.module('starter.controllers', [])
     }
   })
 
-.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$ionicPopup,myHelps) {
-  $scope.helps = myHelps.all();
-  $scope.help = myHelps.get($stateParams.helpId);
+.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$rootScope,$http,myHelps,Helps) {
 
+  // $scope.helps = myHelps.all();
+  // $scope.help = myHelps.get($stateParams.helpId);
+
+
+  // console.log('2------'+Helps.all());
+  // $scope.d = Helps.all();
+
+  // $scope.help = Helps.get($stateParams.helpId);
+
+
+  $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111',{ cache: true }).success(function(data){
+    var hps =  data.helps;
+
+    // var helps = {
+    //   id:hps.id,
+    //   detail:hps.detail,
+    //   coins:hps.coins,
+    //   helperId:hps.helperId,
+    //   createtime:'2016-05-22',
+    //   status:1,
+    //   image:null,
+    //   helptime:'2016-05-22',
+    //   user:{
+    //     id:'103',
+    //     username:'信息学院-103',
+    //     avatar:'img/mike.png',
+    //     tele: '18859271251',
+    //   },
+    // }
+
+    $scope.helps = hps;
+
+    for (var i = 0; i < helps.length; i++) {
+      if (helps[i].id == parseInt($stateParams.helpId)) {
+        $scope.help = helps[i];
+        console.log($scope.help);
+      }
+    }
+
+  });
+
+
+
+
+
+  //点击帮他按钮，求助条目状态更新
   $scope.helpHim=function (helpId,currentuserid) {
-
-
     $ionicPopup.confirm({
         title: "帮助提示",
         template: "你确定要帮他吗？",
@@ -66,27 +108,79 @@ angular.module('starter.controllers', [])
           help.status = 0;
           myHelps.update(help);
           $ionicLoading.show({
-            template: "感谢您的帮助，完成后请线下联系求助者！",
+            template: "感谢您的帮助，完成后请联系求助者！",
             duration:2000
           });
         } else {
 
         }
       });
+  };
+
+  //发布求助
+  $scope.addHelp = function () {
+    var detail = document.getElementById('detail').value;
+    var image = document.getElementById('image').value;
+    var coins = document.getElementById('coins').value;
+    var userId = $rootScope.currentuser.id;
 
 
+    // var obj = $resource('http://120.27.97.21/lehelp/index.php/home/Help/add/session_id/111111');
+    // $scope.data=obj.save({userId:userId,detail:detail,image:image,coins:coins},function(data){
+    //
+    //   console.log(data);
+    //
+    //   console.log(data.name);
+    //
+    //
+    // },function(error){
+    //
+    //   console.log(error);
+    //
+    // });
 
-  }
+    // $scope.addHelp = function(detail,image,coins,userId){
+    //   addhelp.save(
+    //     {
+    //       detail:detail,
+    //       image:image,
+    //       coins:coins,
+    //       userId:userId,
+    //     },
+    //     function(){
+    //       console.log('post sent');
+    //     }
+    //   );
+    // };
+
+    $location.path('/tab/helps');
+  };
+
+  //下拉刷新
+  var base = 1;
+  $scope.doRefresh = function() {
+    for(var i=0;i<10;i++,base++)
+      $scope.helps.unshift();
+      $scope.$broadcast("scroll.refreshComplete");
+  };
 })
 
-.controller('SecondhandsCtrl', function($scope,$stateParams,mySecondhands) {
+.controller('SecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$location,mySecondhands) {
   $scope.secondhands = mySecondhands.all();
   $scope.secondhand = mySecondhands.get($stateParams.secondhandId);
-  $scope.withdraw=function () {
-  }
+
+  $scope.addSecondhand = function () {
+    var detail = document.getElementById('detail').value;
+    var image = document.getElementById('image').value;
+    $ionicLoading.show({
+      template: ""+detail+"",
+      duration:1000
+    });
+    $location.path('/tab/secondhands');
+  };
 })
 
-.controller('MessagesCtrl', function($scope,$location, $ionicPopup,Messages) {
+.controller('MessagesCtrl', function($scope,$location, $ionicPopup,$ionicLoading,Messages) {
   $scope.messages = Messages.all();
   // $scope.help = myHelps.get($stateParams.helpId);
   $scope.jump=function (helpId,isHelper,username,tele) {
@@ -105,6 +199,7 @@ angular.module('starter.controllers', [])
       console.log($location.absUrl());
     }
   }
+
 })
 
 .controller('MyCtrl', function($scope,$ionicPopup,$location,$rootScope,$ionicLoading) {
@@ -187,7 +282,7 @@ angular.module('starter.controllers', [])
   }
 
 })
-.controller('MyHelpsCtrl', function($scope,$stateParams,$ionicActionSheet, myHelps) {
+.controller('MyHelpsCtrl', function($scope,$stateParams,$ionicActionSheet,$ionicLoading,$location, myHelps,User) {
   $scope.helps = myHelps.all();
 
   $scope.help = myHelps.get($stateParams.helpId);
@@ -216,19 +311,18 @@ angular.module('starter.controllers', [])
       },
       destructiveText: "删除",
       destructiveButtonClicked: function () {    //删除求助信息
-        console.log('执行了删除操作');
+        myHelps.delete($scope.help);
+        $ionicLoading.show({
+          template: "删除成功",
+          duration:1000
+        });
+        $location.path('/tab/myhelps');
         return true;
       }
     });
   };
 
-
-})
-.controller('MySecondhandsCtrl', function($scope,$stateParams,$ionicActionSheet,mySecondhands) {
-  $scope.secondhands = mySecondhands.all();
-  $scope.secondhand = mySecondhands.get($stateParams.secondhandId);
-  $scope.withdraw=function (secondhandId) {};
-  $scope.show = function () {
+  $scope.show2 = function (helpId) {
 
     // Show the action sheet
     var hideSheet = $ionicActionSheet.show({
@@ -236,22 +330,89 @@ angular.module('starter.controllers', [])
       cssClass: 'action_s',
       // titleText: "操作当前",
       buttons: [
-        {text: "修改"},
-        {text: "下架"},
+        {text: "帮助结束"},
       ],
-      buttonClicked: function (index) {           //修改求助信息
-        console.log('操作了第' + index + '个按钮');
+      buttonClicked: function (index) {           //帮助完成，更新求助状态，账户余额增减
+        var help = myHelps.get(helpId);
+        help.status = 1;
+        myHelps.update(help);
+        console.log(help);
+
+
+        var user = User.get(help.user.id);
+        User.update(user);
+        user.coins =user.coins - help.coins;
+        User.update(user);
+        console.log(user);
+
+
+
+        var helper = User.get(help.helperId);
+        helper.coins =helper.coins + help.coins;
+        User.update(helper);
+        console.log(helper);
+
+
         return true;
       },
-
       cancelText: "取消",
       cancel: function () {
         console.log('执行了取消操作');
         return true;
       },
+    });
+  };
+
+
+})
+.controller('MySecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,mySecondhands) {
+  $scope.secondhands = mySecondhands.all();
+  $scope.secondhand = mySecondhands.get($stateParams.secondhandId);
+  $scope.withdraw=function (secondhandId) {
+    var sh = mySecondhands.get(secondhandId);
+    sh.status = 1;
+    mySecondhands.update(sh);
+  };
+  $scope.show = function (secondhandId) {
+
+    // Show the action sheet
+    var hideSheet = $ionicActionSheet.show({
+      cancelOnStateChange: true,
+      cssClass: 'action_s',
+      // titleText: "操作当前",
+      buttons: [
+        {text: "下架"},
+        // {text: "修改"},
+      ],
+      buttonClicked: function (index) {           //下架
+        console.log('操作了第' + index + '个按钮');
+        if(index==0){
+          $scope.withdraw(secondhandId);
+          $ionicLoading.show({
+            template: "下架成功",
+            duration:1000
+          });
+        }
+        // else if(index==1){  //修改
+        //   // mySecondhands.update($scope.secondhand);
+        // }
+
+        return true;
+      },
+
+      cancelText: "取消",
+      cancel: function () {
+        // console.log('执行了取消操作');
+        return true;
+      },
       destructiveText: "删除",
       destructiveButtonClicked: function () {    //删除求助信息
-        console.log('执行了删除操作');
+        mySecondhands.delete($scope.secondhand);
+        $ionicLoading.show({
+          template: "删除成功",
+          duration:1000
+        });
+        $location.path('/tab/mysecondhands');
         return true;
       }
     });

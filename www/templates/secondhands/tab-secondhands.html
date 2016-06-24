@@ -1,31 +1,37 @@
 <ion-view view-title="二手专区" >
+  <ion-nav-buttons side="right">
+    <a class="button" href="#/tab/add-secondhand" >发布</a>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list class="list-borderless">
 
-      <ion-item ng-repeat="secondhand in secondhands| orderBy:['status','createtime']"  class="card" href="#/tab/secondhands/{{secondhand.id}}" >
-        <div class="row">
-          <div class="col col-90">
-            <div class="item item-avatar-left">
-              <img ng-src="{{secondhand.user.avatar}}">
-              <h2>{{secondhand.user.username}}</h2>
-              <h5>{{secondhand.createtime}}</h5>
+      <ion-item ng-repeat="secondhand in secondhands | orderBy:['status','createtime']"  href="#/tab/secondhands/{{secondhand.id}}">
+
+        <div class="list card">
+          <div class="row">
+            <div class="col col-80">
+              <div class="item item-avatar">
+                <img src="{{secondhand.user.avatar}}">
+                <h2>{{secondhand.user.username}}</h2>
+                <p>{{secondhand.createtime}}</p>
+              </div>
+            </div>
+            <div class="col col-20">
+              <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="secondhand.flag==0">想要</span>
+              <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="secondhand.flag==1">我有</span>
+              <br>
+              <span class="subdued" style="font-size: smaller;border:1px solid #C1CDC1;" ng-if="secondhand.status==1">已下架</span>
             </div>
           </div>
-          <div class="col col-10">
-            <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="secondhand.flag==0">想要</span>
-            <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="secondhand.flag==1">我有</span>
-            <br>
-            <span class="dark" style="font-size: smaller;border:1px solid #000000;" ng-if="secondhand.status==true">已下架</span>
+
+          <div class="item item-body">
+            <img class="full-image" src="{{secondhand.image}}" ng-if="secondhand.image">
+            <p>
+              {{secondhand.detail}}
+            </p>
           </div>
         </div>
 
-        <div class="item">
-          <p>{{secondhand.detail}}</p>
-        </div>
-
-        <div class="item item-image" ng-if="secondhand.image">
-          <img src="{{secondhand.image}}">
-        </div>
       </ion-item>
 
     </ion-list>

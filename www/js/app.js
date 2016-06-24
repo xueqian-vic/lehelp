@@ -53,7 +53,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     templateUrl: 'templates/tabs.html'
   })
 
-  // Each tab has its own nav history stack:
 
   .state('tab.helps', {
     url: '/helps',
@@ -75,6 +74,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       }
     })
 
+    .state('tab.add-help', {
+      url: '/add-help',
+      views: {
+        'tab-helps': {
+          templateUrl: 'templates/helps/add-help.html',
+          controller: 'HelpsCtrl'
+        }
+      }
+    })
+
     .state('tab.secondhands', {
       url: '/secondhands',
       views: {
@@ -90,6 +99,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-secondhands': {
           templateUrl: 'templates/secondhands/secondhand-detail.html',
+          controller: 'SecondhandsCtrl'
+        }
+      }
+    })
+
+    .state('tab.add-secondhand', {
+      url: '/add-secondhand',
+      views: {
+        'tab-secondhands': {
+          templateUrl: 'templates/secondhands/add-secondhand.html',
           controller: 'SecondhandsCtrl'
         }
       }

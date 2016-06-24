@@ -8,16 +8,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services.js" afterPath="$PROJECT_DIR$/www/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" afterPath="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" afterPath="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/helps/help-detail.html" afterPath="$PROJECT_DIR$/www/templates/helps/help-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/helps/tab-helps.html" afterPath="$PROJECT_DIR$/www/templates/helps/tab-helps.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/messages/tab-messages.html" afterPath="$PROJECT_DIR$/www/templates/messages/tab-messages.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/my/my-helps.html" afterPath="$PROJECT_DIR$/www/templates/my/my-helps.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/my/my-secondhands.html" afterPath="$PROJECT_DIR$/www/templates/my/my-secondhands.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/my/myhelp-detail.html" afterPath="$PROJECT_DIR$/www/templates/my/myhelp-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/my/mysecondhand-detail.html" afterPath="$PROJECT_DIR$/www/templates/my/mysecondhand-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html" afterPath="$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html" afterPath="$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html" />
     </list>
     <ignored path="lehelp.iws" />
@@ -49,21 +45,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+            <state relative-caret-position="44">
+              <caret line="374" column="2" selection-start-line="374" selection-start-column="2" selection-end-line="374" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/services.js">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="312" column="26" selection-start-line="309" selection-start-column="6" selection-end-line="312" selection-end-column="26" />
+              <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -72,23 +78,25 @@
       <file leaf-file-name="tab-helps.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/helps/tab-helps.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+            <state relative-caret-position="868">
+              <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="help-detail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="help-detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/helps/help-detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="698">
+              <caret line="61" column="56" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,6 +138,7 @@
         <option value="$PROJECT_DIR$/www/templates/my/setting.html" />
         <option value="$PROJECT_DIR$/www/templates/my/feedback.html" />
         <option value="$PROJECT_DIR$/www/templates/my/updatepwd.html" />
+        <option value="$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html" />
         <option value="$PROJECT_DIR$/www/templates/my/tab-my.html" />
         <option value="$PROJECT_DIR$/www/templates/register.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
@@ -137,27 +146,24 @@
         <option value="$PROJECT_DIR$/www/templates/messages/popover.html" />
         <option value="$PROJECT_DIR$/www/templates/messages/mess-popover.html" />
         <option value="$PROJECT_DIR$/www/templates/messages/help-detail.html" />
+        <option value="$PROJECT_DIR$/www/templates/my/my-secondhands.html" />
         <option value="$PROJECT_DIR$/www/templates/my/mysecondhand-detail.html" />
         <option value="$PROJECT_DIR$/www/templates/helps/update-help.html" />
         <option value="$PROJECT_DIR$/www/templates/secondhands/update-secondhand.html" />
+        <option value="$PROJECT_DIR$/www/templates/messages/tab-messages.html" />
+        <option value="$PROJECT_DIR$/www/templates/my/my-helps.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html" />
         <option value="$PROJECT_DIR$/www/templates/secondhands/add-secondhand.html" />
         <option value="$PROJECT_DIR$/www/templates/helps/add-help.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/lisi.json" />
         <option value="$PROJECT_DIR$/www/zhangshan.json" />
-        <option value="$PROJECT_DIR$/www/templates/my/my-helps.html" />
         <option value="$PROJECT_DIR$/www/templates/my/myhelp-detail.html" />
-        <option value="$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html" />
-        <option value="$PROJECT_DIR$/www/templates/my/my-secondhands.html" />
-        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
-        <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css" />
-        <option value="$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html" />
-        <option value="$PROJECT_DIR$/www/templates/messages/tab-messages.html" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
+        <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/templates/helps/tab-helps.html" />
         <option value="$PROJECT_DIR$/www/templates/helps/help-detail.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers.js" />
       </list>
     </option>
   </component>
@@ -276,24 +282,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lehelp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lehelp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -310,7 +298,6 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\我的文档\百度云同步盘\lehelp\www\templates\helps" />
       <recent name="E:\我的文档\百度云同步盘\lehelp\www\js" />
       <recent name="E:\我的文档\百度云同步盘\lehelp\www\templates\my" />
     </key>
@@ -408,12 +395,12 @@
       <workItem from="1466569182585" duration="1040000" />
       <workItem from="1466588438390" duration="15999000" />
       <workItem from="1466647214960" duration="10478000" />
-      <workItem from="1466733744422" duration="8991000" />
+      <workItem from="1466733744422" duration="9007000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208803000" />
+    <option name="totallyTimeSpent" value="194560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -473,6 +460,27 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/_bar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ionic/scss/ionicons/_ionicons-font.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scss/ionic.app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.bowerrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -558,6 +566,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/my/oldpwd-modal.html" />
+    <entry file="file://$PROJECT_DIR$/www/js/services_bak.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/my/feedback.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -637,6 +652,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/secondhands/update-secondhand.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -651,10 +673,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/messages/tab-messages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/my/mysecondhand-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/my/my-secondhands.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,6 +710,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/zhangshan.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -683,6 +728,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -690,106 +736,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scss/ionic.app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/my/my-helps.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <marker date="1466749114505" expanded="false" signature="964:1008" placeholder="..." />
-            <marker date="1466749114505" expanded="false" signature="1094:1138" placeholder="..." />
-            <marker date="1466749114505" expanded="false" signature="1223:1267" placeholder="..." />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/my/myhelp-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="51">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/my/my-secondhands.html">
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="5695" column="0" selection-start-line="5695" selection-start-column="0" selection-end-line="5695" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/lib/ionic/css/ionic.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="22" column="108425" selection-start-line="22" selection-start-column="108425" selection-end-line="22" selection-end-column="108425" />
+        <state relative-caret-position="44">
+          <caret line="374" column="2" selection-start-line="374" selection-start-column="2" selection-end-line="374" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/secondhands/secondhand-detail.html">
+    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state relative-caret-position="476">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/messages/tab-messages.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="70" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/secondhands/tab-secondhands.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services_bak.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+        <state relative-caret-position="408">
+          <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -802,39 +792,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+    <entry file="file://$PROJECT_DIR$/www/templates/helps/tab-helps.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="312" column="26" selection-start-line="309" selection-start-column="6" selection-end-line="312" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="868">
+          <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/helps/help-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/helps/tab-helps.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        <state relative-caret-position="698">
+          <caret line="61" column="56" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#ion-item#0;n#ion-list#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>

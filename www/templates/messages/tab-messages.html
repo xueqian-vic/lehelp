@@ -2,13 +2,10 @@
   <ion-content>
     <ion-list>
 
-          <ion-item ng-repeat="message in messages" type="item-text-wrap"  ng-click="jump(message.help.id,message.isHelper,message.commenter.username,message.commenter.tele);">
-
-
-            <div class="row">
-
-                <div class="col col-80">
-                  <div class="item item-avatar-left">
+          <ion-item ng-repeat="message in messages" ng-click="jump(message.help.id,message.isHelper,message.commenter.username,message.commenter.tele);">
+            <div class="row" style="height:80px">
+                <div class="col col-75" style="height:80px">
+                  <div class="item item-avatar-left ">
                     <img ng-src="{{message.commenter.avatar}}">
                     <h2>{{message.commenter.username}}</h2>
                     <span style="font-size: smaller" ng-if="!message.isHelper">评论：</span><span class="dark" style="font-size: smaller">{{message.detail}}</span>
@@ -16,20 +13,16 @@
                   </div>
                 </div>
 
-                <div class="col col-20">
-                  <div class="item item-image" style="font-size:xx-small;border:1px solid #C1CDC1;">
-                    <span style="word-break:break-all;">{{message.help.detail}}</span>
+                <div class="col col-25" style="height:80px">
+                  <div class="item item-body" style="font-size:xx-small;border:1px solid #C1CDC1">
+                    <span>{{message.help.detail  | limitTo : 8}}</span>
                   </div>
                 </div>
               <ion-option-button class="button-assertive" ng-click="">
                 删除
               </ion-option-button>
-
             </div>
-
-
           </ion-item>
-
 
     </ion-list>
   </ion-content>

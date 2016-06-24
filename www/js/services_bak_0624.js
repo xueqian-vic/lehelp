@@ -1,7 +1,4 @@
-/**
- * 命名规范：驼峰法
- */
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngResource'])
   // .factory(
   //   'Media',
   //   [
@@ -31,30 +28,17 @@ angular.module('starter.services', [])
   //   }
   // ])
 
-  .factory('Helps', function($http){
-    var helps;
-    $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-      helps =  data.helps;
-      console.log(helps);
-    });
+
+
+  .factory('Helps', function($resource){
+    var data = $resource('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').get();
+    var helps = data.helps;
     return{
-      /**
-       * 查询所有help
-       * @returns {helps}
-         */
       all:function(){
-        var d = null;
-        // console.log('-----------------------------');
-        // console.log(typeof a);
-        // console.log('2----'+d);
-
-        return helps;
-
+          console.log(data);
+          console.log(helps);
+          return helps;
       },
-      /**
-       * 按id查询help
-       * @returns {help}
-       */
       get:function (id) {
         for (var i = 0; i < helps.length; i++) {
           if (helps[i].id === parseInt(id)) {
@@ -63,11 +47,6 @@ angular.module('starter.services', [])
         }
         return null;
       },
-      /**
-       * 更新help信息
-       * @param help
-       * @returns {boolean}
-         */
       update:function (help) {
         for (var i = 0; i < helps.length; i++) {
           if (helps[i].id === parseInt(help.id)) {
@@ -77,53 +56,46 @@ angular.module('starter.services', [])
             helps[i].status = help.status;
             helps[i].helptime = help.helptime;
             console.log(helps[i]);
-
-            return true;
           }
         }
-        return false;
+        return null;
       },
-      /**
-       * 删除help信息
-       * @param help
-       * @returns {boolean}
-         */
       delete: function(help) {
         helps.splice(helps.indexOf(help), 1);
         console.log(helps);
-        return true;
       },
     }
   })
 
-  .factory('User',function ($http) {
-    // var users=[{
-    //   id:'123',
-    //   username:'信息学院-薛倩',
-    //   password:'xq',
-    //   avatar:'img/mike.png',
-    //   tele:'18859271251',
-    //   coins:100,
-    //   createtime:'2016-05-21',
-    // },{
-    //   id:'100',
-    //   username:'管理学院-张三',
-    //   password:'111',
-    //   avatar:'img/mike.png',
-    //   tele:'18859271251',
-    //   coins:100,
-    //   createtime:'2016-05-24',
-    // }];
-    var users = $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-      return data.helps;
-    });
+
+
+
+  .factory('User',function () {
+    var users=[{
+      id:'123',
+      username:'信息学院-薛倩',
+      password:'xq',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:230,
+      createtime:'2016-05-21',
+    },{
+      id:'100',
+      username:'管理学院-张三',
+      password:'111',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:258,
+      createtime:'2016-05-24',
+    }];
+
     return {
       all: function() {
         return users;
       },
-      get: function(id) {
+      get: function(userId) {
         for (var i = 0; i < users.length; i++) {
-          if (users[i].id == parseInt(id)) {
+          if (users[i].id === parseInt(userId)) {
             return users[i];
           }
         }
@@ -132,27 +104,10 @@ angular.module('starter.services', [])
       add:function (user) {
         users.push(user);
         console.log(users);
-      },
-      update:function (user) {
-        for (var i = 0; i < users.length; i++) {
-          if (users[i].id === parseInt(user.id)) {
-            users[i].nickname = user.nickname;
-            users[i].password = user.password;
-
-            users[i].tele = user.tele;
-            users[i].coins = user.coins;
-            users[i].avatar = user.avatar;
-            console.log(users[i]);
-
-            return true;
-          }
-        }
-        return false;
-      },
+      }
     };
 
   })
-
 .factory('Messages', function() {
   var messages = [{
     id: 0,
@@ -229,6 +184,9 @@ angular.module('starter.services', [])
 })
 
 .factory('myHelps', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
   var helps = [{
     id: 0,
     user:{
@@ -267,7 +225,7 @@ angular.module('starter.services', [])
       avatar:'img/mike.png',
       tele: '18859271251',
     },
-    helperId:'100',
+    helperId:'111',
     detail: '2地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
     createtime:'2016-05-21',
     coins:20,
@@ -358,7 +316,7 @@ angular.module('starter.services', [])
     },
     get: function(helpId) {
       for (var i = 0; i < helps.length; i++) {
-        if (helps[i].id == parseInt(helpId)) {
+        if (helps[i].id === parseInt(helpId)) {
           return helps[i];
         }
       }
@@ -366,12 +324,13 @@ angular.module('starter.services', [])
     },
     update:function (help) {
       for (var i = 0; i < helps.length; i++) {
-        if (helps[i].id == parseInt(help.id)) {
+        if (helps[i].id === parseInt(help.id)) {
           helps[i].helperId = help.helperId;
           helps[i].detail = help.detail;
           helps[i].coins = help.coins;
           helps[i].status = help.status;
           helps[i].helptime = help.helptime;
+          console.log(helps[i]);
         }
       }
       return null;
@@ -461,7 +420,7 @@ angular.module('starter.services', [])
       },
       get: function(secondhandId) {
         for (var i = 0; i < secondhands.length; i++) {
-          if (secondhands[i].id == parseInt(secondhandId)) {
+          if (secondhands[i].id === parseInt(secondhandId)) {
             return secondhands[i];
           }
         }
@@ -469,7 +428,7 @@ angular.module('starter.services', [])
       },
       update:function (secondhand) {
         for (var i = 0; i < secondhands.length; i++) {
-          if (secondhands[i].id == parseInt(secondhand.id)) {
+          if (secondhands[i].id === parseInt(secondhand.id)) {
             secondhands[i].detail = secondhand.detail;
             secondhands[i].status = secondhand.status;
             console.log(secondhands[i]);
