@@ -3,6 +3,8 @@
     <a class="button" href="#/tab/add-secondhand" >发布</a>
   </ion-nav-buttons>
   <ion-content>
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="android"></ion-refresher>
     <ion-list class="list-borderless">
 
       <ion-item ng-repeat="secondhand in secondhands | orderBy:['status','createtime']"  href="#/tab/secondhands/{{secondhand.id}}">
@@ -37,6 +39,8 @@
       </ion-item>
 
     </ion-list>
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
 

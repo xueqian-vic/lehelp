@@ -60,26 +60,113 @@ angular.module('starter.controllers', ['ngCookies'])
   })
 
 
-.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$cookieStore,$http) {
+.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$cookieStore,$http,$state,$ionicPopup) {
 
   // $scope.helps = myHelps.all();
   // $scope.help = myHelps.get($stateParams.helpId);
   // $scope.help = Helps.get($stateParams.helpId);
 
 
-      $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-        $scope.helps =  data.helps;
-        // console.log($scope.helps);
+      // $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
+      //   $scope.helps =  data.helps;
+      //   // console.log($scope.helps);
+      //
+      //   for (var i = 0; i < $scope.helps.length; i++) {
+      //     if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
+      //       $scope.help = $scope.helps[i];
+      //       console.log($scope.help);
+      //     }
+      //   }
+      //
+      // });
 
-        for (var i = 0; i < $scope.helps.length; i++) {
-          if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
-            $scope.help = $scope.helps[i];
-            console.log($scope.help);
-          }
+      // //下拉刷新
+      // $scope.doRefresh = function() {
+      //   $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
+      //     $scope.helps =  data.helps;
+      //     // console.log($scope.helps);
+      //
+      //     for (var i = 0; i < $scope.helps.length; i++) {
+      //       if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
+      //         $scope.help = $scope.helps[i];
+      //         console.log($scope.help);
+      //       }
+      //     }
+      //
+      //   })
+      //     .finally(function() {
+      //       // 停止广播ion-refresher
+      //       $scope.$broadcast('scroll.refreshComplete');
+      //     });
+      // };
+      $scope.hasmore=true;
+      var run = false;//模拟线程锁机制  防止多次请求 含义：是否正在请求。请注意，此处并非加入到了就绪队列，而是直接跳过不执行
+      console.log($scope.hasmore+"是否加载更多");
+      var obj = {page:1};
+      var results = chushihua(obj,1);
+      console.log(results);
+
+      $scope.doRefresh = function(){
+        var obj_data = {page:1};
+        var results = chushihua(obj_data,2);
+        console.log(results);
+        $scope.hasmore=true;
+        $scope.$broadcast('scroll.refreshComplete');
+      };
+
+      $scope.loadMore = function(){
+        console.log(obj.page);
+        var old = $scope.helps;
+        if(old!=undefined){
+          var results = chushihua(obj,3);
+          console.log(results);
         }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      };
 
-      });
+      /* state:1初始化，2刷新，3加载更多 */
+      function chushihua(obj_data,state){
+        if(!run){
+          run = true;
+          $http({
+            method:"POST",
+            url:'http://120.27.97.21/lehelp/index.php/home/Help/index/p/'+obj_data.page+'/session_id/111111',
+            data:obj_data,
+            headers: {'Content-Type': 'application/json;charset=utf-8'},
+            dataType:'JSON'
+          }).success(function(data, status) {
+            console.log(status);
+            run = false;
+            if (state==3) {
+              if (data.status != 0){
+                $scope.helps = $scope.helps.concat(data.helps);
+                for (var i = 0; i < $scope.helps.length; i++) {
+                  if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
+                    $scope.help = $scope.helps[i];
+                    console.log($scope.help);
+                  }
+                }
+                obj.page += 1;
+              }else{
+                console.log("结束");
+                $scope.hasmore = false;
+              }
+            }else{
+              $scope.helps = data.helps;
+              for (var i = 0; i < $scope.helps.length; i++) {
+                if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
+                  $scope.help = $scope.helps[i];
+                  console.log($scope.help);
+                }
+              }
+              console.log($scope.helps);
+              obj.page = 2;
+            }
+          }).error(function(data, status) {
 
+          });
+        }
+      }
       $scope.show = function (helpId) {
         var hideSheet = $ionicActionSheet.show({
           cancelOnStateChange: true,
@@ -213,33 +300,79 @@ angular.module('starter.controllers', ['ngCookies'])
 
         $location.path('/tab/helps');
       };
-
-      //下拉刷新
-      var base = 1;
-      $scope.doRefresh = function() {
-        for(var i=0;i<10;i++,base++)
-          $scope.helps.unshift();
-          $scope.$broadcast("scroll.refreshComplete");
-      };
 })
 
 
 
-.controller('SecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$location,$http) {
+.controller('SecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$location,$http,$ionicActionSheet,$timeout,$cookieStore,$state) {
+  $scope.hasmore=true;
+  var run = false;//模拟线程锁机制  防止多次请求 含义：是否正在请求。请注意，此处并非加入到了就绪队列，而是直接跳过不执行
+  console.log($scope.hasmore+"是否加载更多");
+  var obj = {page:1};
+  var results = chushihua(obj,1);
+  console.log(results);
 
-  $http.get('http://120.27.97.21/lehelp/index.php/home/SecondHand/index/p/1/session_id/111111',{ cache: true }).success(function(data){
-    $scope.secondhands =  data.secondhands;
-    console.log($scope.secondhands);
+  $scope.doRefresh = function(){
+    var obj_data = {page:1};
+    var results = chushihua(obj_data,2);
+    console.log(results);
+    $scope.hasmore=true;
+    $scope.$broadcast('scroll.refreshComplete');
+  };
 
-    for (var i = 0; i < $scope.secondhands.length; i++) {
-      if ($scope.secondhands[i].id == parseInt($stateParams.secondhandId)) {
-        $scope.secondhand = $scope.secondhands[i];
-        console.log($scope.secondhand);
-      }
+  $scope.loadMore = function(){
+    console.log(obj.page);
+    var old = $scope.secondhands;
+    if(old!=undefined){
+      var results = chushihua(obj,3);
+      console.log(results);
     }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  };
 
-  });
+  /* state:1初始化，2刷新，3加载更多 */
+  function chushihua(obj_data,state){
+    if(!run){
+      run = true;
+      $http({
+        method:"POST",
+        url:'http://120.27.97.21/lehelp/index.php/home/SecondHand/index/p/'+obj_data.page+'/session_id/111111',
+        data:obj_data,
+        // headers: {'Content-Type': 'application/json;charset=utf-8'},
+        dataType:'JSON'
+      }).success(function(data, status) {
+        console.log(status);
+        run = false;
+        if (state==3) {
+          if (data.status != 0){
+            $scope.secondhands = $scope.secondhands.concat(data.secondhands);
+            for (var i = 0; i < $scope.secondhands.length; i++) {
+              if ($scope.secondhands[i].id == parseInt($stateParams.secondhandId)) {
+                $scope.secondhand = $scope.secondhands[i];
+                console.log($scope.secondhand);
+              }
+            }
+            obj.page += 1;
+          }else{
+            console.log("结束");
+            $scope.hasmore = false;
+          }
+        }else{
+          $scope.secondhands = data.secondhands;
+          for (var i = 0; i < $scope.secondhands.length; i++) {
+            if ($scope.secondhands[i].id == parseInt($stateParams.secondhandId)) {
+              $scope.secondhand = $scope.secondhands[i];
+              console.log($scope.secondhand);
+            }
+          }
+          console.log($scope.secondhands);
+          obj.page = 2;
+        }
+      }).error(function(data, status) {
 
+      });
+    }
+  };
   $scope.addSecondhand = function () {
     var detail = document.getElementById('detail').value;
     var image = document.getElementById('image').value;
@@ -363,4 +496,136 @@ angular.module('starter.controllers', ['ngCookies'])
     $location.path('/tab/setting');  //是 /tab/updatepwd 而不是 #/tab/updatepwd
   }
 
-});
+})
+  .controller('TestsCtrl', ['$scope', '$ionicSlideBoxDelegate', '$ionicLoading','$cordovaCamera', function ($scope, $ionicSlideBoxDelegate, $ionicLoading,$cordovaCamera) {
+    $scope.images = [
+      'http://b.zol-img.com.cn/sjbizhi/images/8/750x530/1423205139299.jpg',
+      'http://b.zol-img.com.cn/sjbizhi/images/8/750x530/1423205136134.jpg',
+      'http://b.zol-img.com.cn/sjbizhi/images/8/750x530/1423205133173.jpg',
+      'http://b.zol-img.com.cn/sjbizhi/images/8/750x530/1423205130655.jpg'
+    ];
+
+    // 使用相机拍照获取图片
+    $scope.takePicture = function () {
+      var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URL,
+        sourceType: Camera.PictureSourceType.CAMERA/*,
+         targetWidth: 600, //图片上传宽度
+         targetHeight: 450 //图片上传高度*/
+      };
+      $cordovaCamera.getPicture(options).then(function (imageURI) {
+        window.resolveLocalFileSystemURI(imageURI, function (fileEntry) {
+          $scope.picData = fileEntry.nativeURL;
+          $scope.ftLoad = true;
+        });
+      }, function (error) {
+        $ionicLoading.show({template: 'Errore di caricamento...', duration: 3000});
+      });
+    };
+
+    // 从图库中选择图片
+    $scope.selectPicture = function () {
+      var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY/*,
+         targetWidth: 600, //图片上传宽度
+         targetHeight: 450 //图片上传高度*/
+      };
+
+      $cordovaCamera.getPicture(options).then(
+        function (imageURI) {
+          window.resolveLocalFileSystemURI(imageURI, function (fileEntry) {
+            $scope.picData = fileEntry.nativeURL;
+            $scope.ftLoad = true;
+          });
+        },
+        function (err) {
+          $ionicLoading.show({template: 'Errore di caricamento...', duration: 3000})
+        }
+      );
+    };
+
+    // 上传图片
+    $scope.uploadPicture = function () {
+      var fileURL = $scope.picData;
+      var options = new FileUploadOptions();
+      options.fileKey = "fileAddPic";
+      options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+      options.mimeType = "image/jpeg";
+      options.chunkedMode = false;
+
+      // 服务端上传地址
+      var uri = encodeURI("http://xxxx");
+
+      var ft = new FileTransfer();
+
+      ft.upload(fileURL, uri, onSuccess, onFail, options);
+
+      ft.onprogress = onProgress;
+    }
+
+    // 上传进度
+    function onProgress(progressEvent) {
+      if (progressEvent.lengthComputable) {
+        var uploadProgress = (progressEvent.loaded / progressEvent.total) * 100;
+        $ionicLoading.show({
+          template: "已经上传：" + Math.floor(uploadProgress) + "%"
+        });
+        if (uploadProgress > 99) {
+          $ionicLoading.hide();
+        }
+      } else {
+        $ionicLoading.hide();
+      }
+    };
+
+    // 上传失败
+    function onFail(message) {
+      if (message.indexOf('cancelled') < 0) {
+        alert('出錯了：' + message);
+      }
+    }
+
+    // 上传成功
+    function onSuccess(msg) {
+      /* msg.response是服务端返回的值，需要将字符串转为对象
+       msg={"response":"{\"ReturnUrl"\:\"http://xxx.com/upload/modified.jpg\",\"Success\":true,\"Message\":\"上传成功\"}","responseCode:":200,"objectsId":"","bytesSent":16497}
+       */
+      var response = JSON.parse(msg.response);
+      if (msg.responseCode == "200") {
+        if (response.Success) {
+          $ionicLoading.show({
+            template: response.Message,
+            duration: 800
+          });
+          $scope.images.unshift(response.ReturnUrl);
+          $ionicSlideBoxDelegate.$getByHandle("theSlider").update();
+        } else {
+          $ionicLoading.show({
+            template: response.Message,
+            duration: 1000
+          });
+        }
+      } else {
+        $ionicLoading.show({
+          template: "通讯失败，上传失败",
+          duration: 1000
+        });
+      }
+    }
+  }])
+  .controller('PullRefresh', function($scope, $http) {
+    $scope.items = [];
+    $scope.doRefresh = function() {
+      $http.get('/new-items')
+        .success(function(newItems) {
+          $scope.items = newItems;
+        })
+        .finally(function() {
+          // 停止广播ion-refresher
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+  });
