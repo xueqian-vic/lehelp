@@ -13,9 +13,12 @@
   -->
 
   <!-- ionic/angularjs js -->
-  <script src="lib/ionic/js/angular/angular.min.js"></script>
+  <script src="lib/ionic/js/angular/angular.js"></script>
   <script src="lib/ionic/js/ionic.bundle.min.js"></script>
 
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>-->
+  <script src="lib/ionic/js/angular-cookies.js"></script>
+  <!--<script src="//code.angularjs.org/1.5.3/angular-cookies.js"></script>-->
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
 
@@ -23,10 +26,13 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
-  <script
-    src="https://code.jquery.com/jquery-3.0.0.min.js"
-    integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
-    crossorigin="anonymous"></script>
+  <!--<script-->
+    <!--src="https://code.jquery.com/jquery-3.0.0.min.js"-->
+    <!--integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="-->
+    <!--crossorigin="anonymous"></script>-->
+
+
+
 </head>
 
 <body ng-app="starter" ng-controller="registerCtrl">
@@ -40,28 +46,31 @@
   <div class="list">
     <div class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
-      <input type="text" placeholder="请输入您的手机号码" id="tele">
+      <input type="text" placeholder="请输入您的手机号码" id="tele" ng-maxlength="11">
     </div>
     <label class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
       <!--<span class="input-label">年龄</span>-->
-      <input type="text" placeholder="请输入您的昵称"  id="username">
+      <input type="text" placeholder="请输入您的用户名" ng-maxlength="20"  id="username">
+    </label>
+    <label class="item item-input item-input-inset">
+      <i class="icon ion-ios-unlocked-outline positive"></i>
+      <input type="text" placeholder="请输入您的昵称"  id="nickname" ng-maxlength="20">
     </label>
 
     <label class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
-      <input type="password" placeholder="请设置密码"  id="password"  required="required">
+      <input type="password" placeholder="请设置密码"  id="password"  required="required" ng-maxlength="20">
     </label>
 
     <label class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
-      <input type="password" placeholder="请重复密码"  id="r_password" required="required">
+      <input type="password" placeholder="请重复密码"  id="r_password" required="required" ng-maxlength="20">
     </label>
   </div>
   <a class="button button-positive " style="width:100%;margin:0 auto;align:center" ng-click="register();">登陆</a>
   <!--</form>-->
 </div>
-
 
 
 </body>

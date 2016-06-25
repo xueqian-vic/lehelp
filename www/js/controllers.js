@@ -1,209 +1,226 @@
-angular.module('starter.controllers', ['ngResource','ngCookies'])
-.config(function($httpProvider){
-  $httpProvider.defaults.transformRequest=function(obj){
-    var str=[];
-    for(var p in obj){
-      str.push(encodeURIComponent(p)+"="+encodeURIComponent(obj[p]));
-    }
-    return str.join("&");
-  };
-  $httpProvider.defaults.headers.post={'Content-Type':'application/x-www-form-urlencoded'}
-  })
+angular.module('starter.controllers', ['ngCookies'])
 
 .run(function($rootScope) {
     $rootScope.currentuser = {id:'1',username:'xueqian123',nickname:'薛倩',password:'xq',avatar:'img/mike.png',coins:230,tele:'18859271251',createtime:'2016-05-21'};
     $rootScope.setting = {shake:true,ring:true};
   })
 
-  .controller('registerCtrl', function($scope,$ionicLoading,$location,User) {
-    $scope.register = function () {
-      var username = document.getElementById('username').value;
-      var tele = document.getElementById('tele').value;
-      var password = document.getElementById('password').value;
-      var r_password = document.getElementById('r_password').value;
-      var createtime = new Date();
-      var newuser = {id:'111',username:username,password:password,avatar:'',tele:tele,coins:10,createtime:createtime};
+  .controller('registerCtrl', function($scope,$ionicLoading,$cookieStore,$location,User) {
+    if($cookieStore.get('username') == undefined) {
+      console.log('$cookieStore.username = ' + $cookieStore.get('username'));
+      $scope.register = function () {
+        var username = document.getElementById('username').value;
+        var nickname = document.getElementById('nickname').value;
+        var tele = document.getElementById('tele').value;
+        var password = document.getElementById('password').value;
+        var r_password = document.getElementById('r_password').value;
+        var createtime = new Date();
+        var newuser = {
+          id: '111',
+          username: username,
+          password: password,
+          avatar: '',
+          tele: tele,
+          coins: 10,
+          createtime: createtime
+        };
 
-      if(password.trim()==r_password.trim()){
-        $scope.flag = User.add(newuser);
+        $cookieStore.put('username', username);
+        $cookieStore.put('nickname', nickname);
+        $cookieStore.put('password', password);
+        $cookieStore.put('avatar', 'img/mike.png');
 
-        $ionicLoading.show({
-          template: "注册成功",
-          duration:1000
-        });
-        location.href='index.html#/tab/helps';
-        // $location.path('/tab/helps');
-        console.log($location.absUrl());
-      }else{
+        console.log($cookieStore.get('username'));
+        console.log($cookieStore.get('nickname'));
+        console.log($cookieStore.get('password'));
+        console.log($cookieStore.get('avatar'));
+
+        if (password.trim() == r_password.trim()) {
+          // $scope.flag = User.add(newuser);
+
+          $ionicLoading.show({
+            template: "注册成功",
+            duration: 1000
+          });
+          //
+          location.href='index.html#/tab/helps';
+          // $location.path('/tab/helps');
+          // console.log($location.absUrl());
+        } else {
           $ionicLoading.show({
             template: "两次密码不一致",
-            duration:1000
+            duration: 1000
           });
+        }
       }
+    }else{
+      location.href='index.html#/tab/helps';
+      console.log($location.absUrl());
     }
   })
 
 
-.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http,Helps) {
+.controller('HelpsCtrl', function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$cookieStore,$http) {
 
   // $scope.helps = myHelps.all();
   // $scope.help = myHelps.get($stateParams.helpId);
   // $scope.help = Helps.get($stateParams.helpId);
 
-  $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-    $scope.helps =  data.helps;
-    // console.log($scope.helps);
 
-    for (var i = 0; i < $scope.helps.length; i++) {
-      if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
-        $scope.help = $scope.helps[i];
-        console.log($scope.help);
-      }
-    }
+      $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
+        $scope.helps =  data.helps;
+        // console.log($scope.helps);
 
-  });
-
-  $scope.show = function (helpId) {
-    var hideSheet = $ionicActionSheet.show({
-      cancelOnStateChange: true,
-      cssClass: 'action_s',
-      // titleText: "操作当前",
-      buttons: [{text: "修改"}],
-      buttonClicked: function (index) {           //修改求助信息
-        return true;
-      },
-      cancelText: "取消",
-      cancel: function () {
-        return true;
-      },
-      destructiveText: "删除",
-      destructiveButtonClicked: function () {    //删除求助信息
-
-        $http.get('http://120.27.97.21/lehelp/index.php/home/Help/delete/session_id/111111',{params:{'helpId':helpId}}).success(function(data){
-          console.log(data.status);
-          if(data.status=='1'){
-            $ionicLoading.show({
-              template: "删除成功",
-              duration:1000
-            });
+        for (var i = 0; i < $scope.helps.length; i++) {
+          if ($scope.helps[i].id == parseInt($stateParams.helpId)) {
+            $scope.help = $scope.helps[i];
+            console.log($scope.help);
           }
-        });
-
-        //想实现，删除后help立即消失？
-        $scope.helps.splice($scope.helps.indexOf($scope.help), 1);
-        console.log($scope.helps);
-
-        $location.path('/tab/myhelps');
-        return true;
-      }
-    });
-  };
-
-  $scope.show2 = function (helpId) {
-
-    // Show the action sheet
-    var hideSheet = $ionicActionSheet.show({
-      cancelOnStateChange: true,
-      cssClass: 'action_s',
-      // titleText: "操作当前",
-      buttons: [
-        {text: "帮助结束"},
-      ],
-      buttonClicked: function (index) {           //帮助完成，更新求助状态，账户余额增减
-        var help = $scope.help;
-        console.log('---------------');
-        console.log(help);
-        help.status = 1;
-        var postData={
-          userid:help.userid,
-          helperId : help.helperId,
-          detail : help.detail,
-          coins : help.coins,
-          image:help.image,
-          status : '1'
-        };
-        $http.post('http://120.27.97.21/lehelp/index.php/home/Help/edit/session_id/111111',postData,{params:{'helpId':helpId}}).success(function(data){
-          console.log(data);
-          console.log(data.status);
-          console.log('helpid---------'+helpId);
-          if(data.status=='1'){
-            $ionicLoading.show({
-              template: "求助已结束",
-              duration:1000
-            });
-          }
-        });
-
-        $timeout(function () {
-          hideSheet();
-        },1000);
-      },
-      cancelText: "取消",
-      cancel: function () {
-        console.log('执行了取消操作');
-        return true;
-      },
-
-    });
-
-
-  };
-
-  //点击帮他按钮，求助条目状态更新
-  $scope.helpHim=function (helpId,currentuserid) {
-    $ionicPopup.confirm({
-        title: "帮助提示",
-        template: "你确定要帮他吗？",
-        okText:"确定",
-        cancelText:'取消',
-      })
-      .then(function(res) {
-        if(res) {
-          var help = myHelps.get(helpId);
-          help.helperId = currentuserid;
-          help.helptime = new Date();
-          help.status = 0;
-          myHelps.update(help);
-          $ionicLoading.show({
-            template: "感谢您的帮助，完成后请联系求助者！",
-            duration:2000
-          });
-        } else {
-
         }
+
       });
-  };
 
-  //发布求助
-  $scope.addHelp = function () {
-    var detail = document.getElementById('detail').value;
-    var image = document.getElementById('image').value;
-    var coins = document.getElementById('coins').value;
-    var userId = $rootScope.currentuser.id;
+      $scope.show = function (helpId) {
+        var hideSheet = $ionicActionSheet.show({
+          cancelOnStateChange: true,
+          cssClass: 'action_s',
+          // titleText: "操作当前",
+          buttons: [{text: "修改"}],
+          buttonClicked: function (index) {           //修改求助信息
+            return true;
+          },
+          cancelText: "取消",
+          cancel: function () {
+            return true;
+          },
+          destructiveText: "删除",
+          destructiveButtonClicked: function () {    //删除求助信息
 
-    $http.get('http://120.27.97.21/lehelp/index.php/home/Help/add/session_id/111111',{ cache: true }).success(function(data){
-      $scope.secondhands =  data.secondhands;
-      console.log($scope.secondhands);
+            $http.get('http://120.27.97.21/lehelp/index.php/home/Help/delete/session_id/111111',{params:{'helpId':helpId}}).success(function(data){
+              console.log(data.status);
+              if(data.status=='1'){
+                $ionicLoading.show({
+                  template: "删除成功",
+                  duration:1000
+                });
+              }
+            });
 
-      for (var i = 0; i < $scope.secondhands.length; i++) {
-        if ($scope.secondhands[i].id == parseInt($stateParams.secondhandId)) {
-          $scope.secondhand = $scope.secondhands[i];
-          console.log($scope.secondhand);
-        }
-      }
+            //想实现，删除后help立即消失？
+            $scope.helps.splice($scope.helps.indexOf($scope.help), 1);
+            console.log($scope.helps);
 
-    });
+            $location.path('/tab/myhelps');
+            return true;
+          }
+        });
+      };
 
-    $location.path('/tab/helps');
-  };
+      $scope.show2 = function (helpId) {
 
-  //下拉刷新
-  var base = 1;
-  $scope.doRefresh = function() {
-    for(var i=0;i<10;i++,base++)
-      $scope.helps.unshift();
-      $scope.$broadcast("scroll.refreshComplete");
-  };
+        // Show the action sheet
+        var hideSheet = $ionicActionSheet.show({
+          cancelOnStateChange: true,
+          cssClass: 'action_s',
+          // titleText: "操作当前",
+          buttons: [
+            {text: "帮助结束"},
+          ],
+          buttonClicked: function (index) {           //帮助完成，更新求助状态，账户余额增减
+            var help = $scope.help;
+            console.log('---------------');
+            console.log(help);
+            help.status = 1;
+            var postData={
+              userid:help.userid,
+              helperId : help.helperId,
+              detail : help.detail,
+              coins : help.coins,
+              image:help.image,
+              status : '1'
+            };
+            $http.post('http://120.27.97.21/lehelp/index.php/home/Help/edit/session_id/111111',postData,{params:{'helpId':helpId}}).success(function(data){
+              console.log(data);
+              console.log(data.status);
+              console.log('helpid---------'+helpId);
+              if(data.status=='1'){
+                $ionicLoading.show({
+                  template: "求助已结束",
+                  duration:1000
+                });
+              }
+            });
+
+            $timeout(function () {
+              hideSheet();
+            },1000);
+          },
+          cancelText: "取消",
+          cancel: function () {
+            console.log('执行了取消操作');
+            return true;
+          },
+
+        });
+
+
+      };
+
+      //点击帮他按钮，求助条目状态更新
+      $scope.helpHim=function (helpId,currentuserid) {
+        $ionicPopup.confirm({
+            title: "帮助提示",
+            template: "你确定要帮他吗？",
+            okText:"确定",
+            cancelText:'取消',
+          })
+          .then(function(res) {
+            if(res) {
+              var help = myHelps.get(helpId);
+              help.helperId = currentuserid;
+              help.helptime = new Date();
+              help.status = 0;
+              myHelps.update(help);
+              $ionicLoading.show({
+                template: "感谢您的帮助，完成后请联系求助者！",
+                duration:2000
+              });
+            } else {
+
+            }
+          });
+      };
+
+      //发布求助
+      $scope.addHelp = function () {
+        var detail = document.getElementById('detail').value;
+        var image = document.getElementById('image').value;
+        var coins = document.getElementById('coins').value;
+        var userId = $rootScope.currentuser.id;
+
+        $http.get('http://120.27.97.21/lehelp/index.php/home/Help/add/session_id/111111',{ cache: true }).success(function(data){
+          $scope.secondhands =  data.secondhands;
+          console.log($scope.secondhands);
+
+          for (var i = 0; i < $scope.secondhands.length; i++) {
+            if ($scope.secondhands[i].id == parseInt($stateParams.secondhandId)) {
+              $scope.secondhand = $scope.secondhands[i];
+              console.log($scope.secondhand);
+            }
+          }
+
+        });
+
+        $location.path('/tab/helps');
+      };
+
+      //下拉刷新
+      var base = 1;
+      $scope.doRefresh = function() {
+        for(var i=0;i<10;i++,base++)
+          $scope.helps.unshift();
+          $scope.$broadcast("scroll.refreshComplete");
+      };
 })
 
 
@@ -237,8 +254,18 @@ angular.module('starter.controllers', ['ngResource','ngCookies'])
 
 
 .controller('MessagesCtrl', function($scope,$location, $ionicPopup,$ionicLoading,Messages) {
-  $scope.messages = Messages.all();
-  // $scope.help = myHelps.get($stateParams.helpId);
+  $http.get('http://120.27.97.21/lehelp/index.php/home/Message/index/session_id/111111',{params:{'userId':'1'}}).success(function(data){
+    $scope.messages =  data.messages;
+    console.log($scope.messages);
+
+    // for (var i = 0; i < $scope.messages.length; i++) {
+    //   if ($scope.messages[i].id == parseInt($stateParams.helpId)) {
+    //     $scope.message = $scope.messages[i];
+    //     console.log($scope.message);
+    //   }
+    // }
+
+  });
   $scope.jump=function (helpId,isHelper,username,tele) {
     if(isHelper){
       $scope.showAlert = function() {
@@ -255,7 +282,6 @@ angular.module('starter.controllers', ['ngResource','ngCookies'])
       console.log($location.absUrl());
     }
   }
-
 })
 
 .controller('MyCtrl', function($scope,$ionicPopup,$location,$rootScope,$ionicLoading) {
@@ -336,72 +362,5 @@ angular.module('starter.controllers', ['ngResource','ngCookies'])
     });
     $location.path('/tab/setting');  //是 /tab/updatepwd 而不是 #/tab/updatepwd
   }
-
-})
-.controller('MyHelpsCtrl', function($scope,$stateParams,$ionicActionSheet,$ionicLoading,$location, myHelps,User) {
-  $scope.helps = myHelps.all();
-
-  $scope.help = myHelps.get($stateParams.helpId);
-  // $scope.userId='123';
-  $scope.helpOrcancel = function (helpId, userId) {
-    // console.log(helperId);
-  };
-
-
-
-})
-.controller('MySecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,mySecondhands) {
-  $scope.secondhands = mySecondhands.all();
-  $scope.secondhand = mySecondhands.get($stateParams.secondhandId);
-  $scope.withdraw=function (secondhandId) {
-    var sh = mySecondhands.get(secondhandId);
-    sh.status = 1;
-    mySecondhands.update(sh);
-  };
-  $scope.show = function (secondhandId) {
-
-    // Show the action sheet
-    var hideSheet = $ionicActionSheet.show({
-      cancelOnStateChange: true,
-      cssClass: 'action_s',
-      // titleText: "操作当前",
-      buttons: [
-        {text: "下架"},
-        // {text: "修改"},
-      ],
-      buttonClicked: function (index) {           //下架
-        console.log('操作了第' + index + '个按钮');
-        if(index==0){
-          $scope.withdraw(secondhandId);
-          $ionicLoading.show({
-            template: "下架成功",
-            duration:1000
-          });
-        }
-        // else if(index==1){  //修改
-        //   // mySecondhands.update($scope.secondhand);
-        // }
-
-        return true;
-      },
-
-      cancelText: "取消",
-      cancel: function () {
-        // console.log('执行了取消操作');
-        return true;
-      },
-      destructiveText: "删除",
-      destructiveButtonClicked: function () {    //删除求助信息
-        mySecondhands.delete($scope.secondhand);
-        $ionicLoading.show({
-          template: "删除成功",
-          duration:1000
-        });
-        $location.path('/tab/mysecondhands');
-        return true;
-      }
-    });
-  };
-
 
 });

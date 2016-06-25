@@ -32,11 +32,6 @@ angular.module('starter.services', [])
   // ])
 
   .factory('Helps', function($http){
-    // var helps;
-    // $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-    //   helps =  data.helps;
-    //   console.log(helps);
-    // });
     return{
       /**
        * 查询所有help
@@ -102,23 +97,23 @@ angular.module('starter.services', [])
   })
 
   .factory('User',function ($http) {
-    // var users=[{
-    //   id:'123',
-    //   username:'信息学院-薛倩',
-    //   password:'xq',
-    //   avatar:'img/mike.png',
-    //   tele:'18859271251',
-    //   coins:100,
-    //   createtime:'2016-05-21',
-    // },{
-    //   id:'100',
-    //   username:'管理学院-张三',
-    //   password:'111',
-    //   avatar:'img/mike.png',
-    //   tele:'18859271251',
-    //   coins:100,
-    //   createtime:'2016-05-24',
-    // }];
+    var users=[{
+      id:'123',
+      username:'信息学院-薛倩',
+      password:'xq',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:100,
+      createtime:'2016-05-21',
+    },{
+      id:'100',
+      username:'管理学院-张三',
+      password:'111',
+      avatar:'img/mike.png',
+      tele:'18859271251',
+      coins:100,
+      createtime:'2016-05-24',
+    }];
     var users = $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
       return data.helps;
     });
@@ -154,6 +149,7 @@ angular.module('starter.services', [])
         }
         return false;
       },
+
     };
 
   })
