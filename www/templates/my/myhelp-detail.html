@@ -1,37 +1,21 @@
 <ion-view view-title="帮助详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <a class="button" ng-click="show(help.id);" ng-if="help.status==-1">···</a>
-    <a class="button" ng-click="show2(help.id);" ng-if="help.status==0">···</a>
+    <a class="button" ng-click="show(help.id);" ng-if="help.status=='-1'">···</a>
+    <a class="button" ng-click="show2(help.id);" ng-if="help.status=='0'">···</a>
   </ion-nav-buttons>
-
-  <ion-content>
-      <!--<ion-item class="card ">-->
-        <!--<div class="list list-borderless">-->
-          <!--<div class="item item-avatar-left">-->
-            <!--<img ng-src="{{help.user.avatar}}">-->
-            <!--<h2>{{help.user.username}}</h2>-->
-            <!--<h5>{{help.createtime}}</h5>-->
-          <!--</div>-->
-          <!--<div class="item">-->
-            <!--<p>{{help.detail}}</p>-->
-          <!--</div>-->
-          <!--<div class="item item-image" ng-if="help.image">-->
-            <!--<img ng-src="{{help.image}}">-->
-            <!--<a class="icon ion-chatbox-working dark"></a>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</ion-item>-->
 
     <ion-content>
       <div class="list card">
         <div class="item item-avatar">
-          <img src="{{help.user.avatar}}">
+          <img src="img/mike.png">
+          <!--<img src="{{help.user.avatar}}">-->
           <h2>{{help.user.username}}</h2>
           <p>{{help.createtime}}</p>
         </div>
 
         <div class="item item-body">
-          <img class="full-image" src="{{help.image}}"  ng-if="help.image">
+          <img class="full-image" src="img/bike.jpg"  ng-if="help.image">
+          <!--<img class="full-image" src="{{help.image}}"  ng-if="help.image">-->
           <p>
             {{help.detail}}
           </p>
@@ -52,7 +36,5 @@
       </div>
     </ion-content>
 
-
-  </ion-content>
 
 </ion-view>

@@ -32,18 +32,23 @@ angular.module('starter.services', [])
   // ])
 
   .factory('Helps', function($http){
-    var helps;
-    $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
-      helps =  data.helps;
-      console.log(helps);
-    });
+    // var helps;
+    // $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
+    //   helps =  data.helps;
+    //   console.log(helps);
+    // });
     return{
       /**
        * 查询所有help
        * @returns {helps}
          */
       all:function(){
-        var d = null;
+        var helps =null;
+        var a = $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index/p/1/session_id/111111').success(function(data){
+          helps =  data.helps;
+          console.log('1---------'+helps);
+
+        });
         // console.log('-----------------------------');
         // console.log(typeof a);
         // console.log('2----'+d);

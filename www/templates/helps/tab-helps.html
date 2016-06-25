@@ -6,8 +6,8 @@
 
     <ion-list class="list-borderless">
 
-      <!--<ion-item ng-repeat="help in helps | orderBy:['status','createtime']"  href="#/tab/helps/{{help.id}}">-->
-      <ion-item ng-repeat="help in helps "  href="#/tab/helps/{{help.id}}">
+      <ion-item ng-repeat="help in helps | orderBy:['status','createtime']"  href="#/tab/helps/{{help.id}}">
+      <!--<ion-item ng-repeat="help in helps "  href="#/tab/helps/{{help.id}}">-->
 
 
          <div class="list card">
@@ -15,8 +15,8 @@
           <div class="row">
             <div class="col col-80">
               <div class="item item-avatar">
-                <img src="img/mike.png">
-                <h2>xueqian</h2>
+                <img src="img/mike.png">   <!--模拟代码测试-->
+                <h2>{{help.user.nickname}}</h2>
                 <p>{{help.createtime}}</p>
               </div>
             </div>
@@ -29,7 +29,7 @@
 
           <div class="item item-body">
             <!--<img class="full-image" src="img/bike.jpg" ng-if="help.image">-->
-            <img class="full-image" src="img/bike.jpg">
+            <img class="full-image" src="img/bike.jpg" ng-if="help.image">   <!--模拟代码测试-->
             <p>
               {{help.detail}}
             </p>

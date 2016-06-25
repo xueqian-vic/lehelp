@@ -149,7 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     views: {
       'tab-my': {
         templateUrl: 'templates/my/my-helps.html',
-        controller: 'MyHelpsCtrl'
+        controller: 'HelpsCtrl'
       }
     }
   })
@@ -158,7 +158,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-my': {
           templateUrl: 'templates/my/myhelp-detail.html',
-          controller: 'MyHelpsCtrl'
+          controller: 'HelpsCtrl'
         }
       }
     })
@@ -168,7 +168,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     views: {
       'tab-my': {
         templateUrl: 'templates/my/my-secondhands.html',
-        controller: 'MySecondhandsCtrl'
+        controller: 'SecondhandsCtrl'
       }
     }
   })
@@ -178,7 +178,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-my': {
           templateUrl: 'templates/my/mysecondhand-detail.html',
-          controller: 'MySecondhandsCtrl'
+          controller: 'SecondhandsCtrl'
         }
       }
     })

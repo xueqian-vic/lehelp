@@ -3,13 +3,15 @@
 
     <div class="list card">
       <div class="item item-avatar">
-        <img src="{{secondhand.user.avatar}}">
-        <h2>{{secondhand.user.username}}</h2>
+        <img src="img/mike.png">
+        <!--<img src="{{secondhand.user.avatar}}">-->
+        <h2>{{secondhand.user.nickname}}</h2>
         <p>{{secondhand.createtime}}</p>
       </div>
 
       <div class="item item-body">
-        <img class="full-image" src="{{secondhand.image}}"  ng-if="secondhand.image">
+        <img class="full-image" src="img/bike.jpg"  ng-if="secondhand.image">
+        <!--<img class="full-image" src="{{secondhand.image}}"  ng-if="secondhand.image">-->
         <p>
           {{secondhand.detail}}
         </p>

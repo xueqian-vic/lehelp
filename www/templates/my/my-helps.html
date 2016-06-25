@@ -1,66 +1,33 @@
 <ion-view view-title="我的帮助"  hide-tabs="true" >
   <ion-content>
-    <!--<ion-list class="list-borderless">-->
-      <!--<ion-item ng-repeat="help in helps | orderBy:['status','createtime']" type="item-text-wrap" class="card" href="#/tab/myhelps/{{help.id}}">-->
-      <!--&lt;!&ndash;<ion-item ng-repeat="help in helps | filter:help.status==false | orderBy:'time'"  class="card" href="#/tab/myhelps/{{help.id}}">&ndash;&gt;-->
-        <!--&lt;!&ndash;{{help.userId}}&ndash;&gt;-->
-        <!--&lt;!&ndash;{{user.userId}}&ndash;&gt;-->
-        <!--<div class="row">-->
-          <!--<div class="col col-90">-->
-            <!--<div class="item item-avatar-left">-->
-              <!--<img ng-src="{{help.user.avatar}}">-->
-              <!--<h2>{{help.user.username}}</h2>-->
-              <!--<h5>{{help.createtime}}</h5>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col col-10">-->
-            <!--<span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status==-1">待帮助</span>-->
-            <!--<span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status==0">帮助中</span>-->
-            <!--<span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status==1">已解决</span>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="item">-->
-          <!--<p >{{help.detail}}</p>-->
-        <!--</div>-->
-
-        <!--<div class="item item-image" ng-if="help.image">-->
-          <!--<img ng-src="{{help.image}}">-->
-          <!--<a class="icon ion-chatbox-working dark"></a>-->
-        <!--</div>-->
-
-      <!--</ion-item>-->
-    <!--</ion-list>-->
     <ion-list class="list-borderless">
-
-      <ion-item ng-repeat="help in helps | orderBy:['status','createtime']"  href="#/tab/helps/{{help.id}}">
-
-
+      <ion-item ng-repeat="help in helps |filter:{'userid':currentuser.id}| orderBy:['status','createtime']"  href="#/tab/myhelps/{{help.id}}">
         <div class="list card">
 
           <div class="row">
             <div class="col col-80">
               <div class="item item-avatar">
-                <img src="{{help.user.avatar}}">
-                <h2>{{help.user.username}}</h2>
+                <!--<img src="{{help.user.avatar}}">-->
+                <img src="img/mike.png">
+                <h2>{{help.user.nickname}}</h2>
                 <p>{{help.createtime}}</p>
               </div>
             </div>
             <div class="col col-20">
-              <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status==-1">待帮助</span>
-              <span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status==0">帮助中</span>
-              <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status==1">已解决</span>
+              <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status=='-1'">待帮助</span>
+              <span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status=='0'">帮助中</span>
+              <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status=='1'">已解决</span>
             </div>
           </div>
 
           <div class="item item-body">
-            <img class="full-image" src="{{help.image}}" ng-if="help.image">
+            <!--<img class="full-image" src="{{help.image}}" ng-if="help.image">-->
+            <img class="full-image" src="img/bike.jpg" ng-if="help.image">
             <p>
               {{help.detail}}
             </p>
             <p>
               <a class="icon ion-chatbox-working subdued"></a>
-              <!--<a href="#" class="subdued">5 Comments</a>-->
             </p>
           </div>
 

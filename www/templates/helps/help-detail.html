@@ -1,19 +1,19 @@
 <ion-view view-title="帮助详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <button class="button" ng-click="helpHim(help.id,currentuser.id)" ng-if="(!help.helperId) && (help.user.id!=currentuser.id)">帮他</button>
+    <button class="button button-positive" ng-click="helpHim(help.id,currentuser.id)" ng-if="(help.status=='-1') && (help.user.id!=currentuser.id)">帮他</button>
     <!--<button class="button" ng-click="helpOrcancel()" ng-if="(help.helperId==currentuser.id) && (help.status==0)">撤销</button>-->
   </ion-nav-buttons>
 
   <ion-content>
     <div class="list card">
       <div class="item item-avatar">
-        <img src="img/mike.png">
-        <h2>{{help.username}}</h2>
+        <img src="img/mike.png">     <!--模拟代码测试-->
+        <h2>{{help.user.nickname}}</h2>
         <p>{{help.createtime}}</p>
       </div>
 
       <div class="item item-body">
-        <img class="full-image" src="img/bike.jpg" >
+        <img class="full-image" src="img/bike.jpg" ng-if="help.image">  <!--模拟代码测试-->
         <p>
           {{help.detail}}
         </p>
