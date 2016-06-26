@@ -3,6 +3,7 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
+
 <ion-tabs class="tabs-icon-top tabs-positive" ng-class="{'tabs-item-hide': $root.hideTabs}">
 
   <!-- Helps Tab -->
@@ -16,30 +17,41 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-secondhands"></ion-nav-view>
   </ion-tab>
 
-  <!-- Chats Tab -->
-  <ion-tab title="通知" icon-off="ion-ios-email-outline" icon-on="ion-ios-email" href="#/tab/messages">
+  <!-- Message Tab -->
+  <ion-tab title="通知" icon-off="ion-ios-email-outline" icon-on="ion-ios-email" href="#/tab/messages"  badge="commentCount" badge-style="badge-assertive">
     <ion-nav-view name="tab-messages"></ion-nav-view>
   </ion-tab>
 
   <!-- My Tab -->
   <ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/my">
     <ion-nav-view name="tab-my"></ion-nav-view>
+
   </ion-tab>
 
 
 </ion-tabs>
 
-<!--<div class="bar bar-header">-->
-  <!--<div class="h1 title">顶部图标选项卡</div>-->
-<!--</div>-->
 
-<!--<div class="tabs tabs-icon-top tabs-positive">-->
-  <!--<a class="tab-item" href="#/tab/helps">-->
-    <!--<i class="icon ion-home"></i>-->
-    <!--主页-->
-  <!--</a>-->
-  <!--<a class="tab-item" href="#/tab/messages">-->
-    <!--<i class="icon ion-gear-a"></i>-->
-    <!--设置-->
-  <!--</a>-->
-<!--</div>-->
+<!--<div class="tabs tabs-icon-top tabs-positive tabs-striped" ng-class="{'tabs-item-hide': $root.hideTabs}">-->
+
+
+  <!--<div title="求助" icon-off="ion-ios-flag-outline" icon-on="ion-ios-flag" href="#/tab/helps"  class="tab-item icon ion-ios-flag ">-->
+     <!--<h4 class="title">求助</h4>-->
+    <!--<ion-nav-view name="tab-helps"></ion-nav-view>-->
+  <!--</div>-->
+
+
+  <!--<ion-tab title="二手" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/secondhands">-->
+    <!--<ion-nav-view name="tab-secondhands"></ion-nav-view>-->
+  <!--</ion-tab>-->
+
+  <!--<div title="通知" icon-off="ion-ios-email-outline" icon-on="ion-ios-email" href="#/tab/messages"  class="tab-item has-badge">-->
+    <!--<i class="badge badge-assertive">1</i>-->
+    <!--<ion-nav-view name="tab-messages"></ion-nav-view>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash; My Tab &ndash;&gt;-->
+  <!--<ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/my">-->
+    <!--<ion-nav-view name="tab-my"></ion-nav-view>-->
+
+  <!--</ion-tab>-->

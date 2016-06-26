@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'starter' is the name of this angular module example (also set in a <body> attribute in main.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
@@ -74,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
   })
 
     .state('tab.help-detail', {
-      url: '/helps/:helpId',
+      url: '/helps/:helpid',
       views: {
         'tab-helps': {
           templateUrl: 'templates/helps/help-detail.html',
@@ -104,7 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     })
 
     .state('tab.secondhands-detail', {
-      url: '/secondhands/:secondhandId',
+      url: '/secondhands/:secondhandid',
       views: {
         'tab-secondhands': {
           templateUrl: 'templates/secondhands/secondhand-detail.html',
@@ -134,7 +134,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     })
 
     .state('tab.messageshelp-detail', {
-      url: '/messages/:helpId',
+      url: '/messages/:helpid',
       views: {
         'tab-messages': {
           templateUrl: 'templates/messages/help-detail.html',
@@ -163,7 +163,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     }
   })
     .state('tab.myhelp-detail', {
-      url: '/myhelps/:helpId',
+      url: '/myhelps/:helpid',
       views: {
         'tab-my': {
           templateUrl: 'templates/my/myhelp-detail.html',
@@ -183,7 +183,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
   })
 
     .state('tab.mysecondhands-detail', {
-      url: '/mysecondhands/:secondhandId',
+      url: '/mysecondhands/:secondhandid',
       views: {
         'tab-my': {
           templateUrl: 'templates/my/mysecondhand-detail.html',

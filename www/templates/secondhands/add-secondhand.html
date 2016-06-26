@@ -1,15 +1,30 @@
 <ion-view view-title="发布二手"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <button class="button" ng-click="addSecondhand()">发布</button>
+    <button class="button" ng-click="addSecondhand();">发布</button>
   </ion-nav-buttons>
-
+  <ion-pane>
   <ion-content>
+    <ion-radio ng-repeat="item in serverSideList" ng-model="defaultselect" ng-value="item.value"  name="group">
+      {{ item.text }}
+    </ion-radio>
+
     <div class="item-input">
       <textarea style="width:100%;maxlength:200" required rows="10" placeholder="请输入二手物品信息" id="detail"></textarea>
     </div>
-    <div class="item-input">
-      <input type="file" id="image">
-    </div>
-  </ion-content>
 
+      <button type="button" ng-click="takePicture()"
+              class="button button-block button-balanced">
+        拍摄
+      </button>
+      <button type="button" ng-click="selectPicture()"
+              class="button button-block button-balanced">
+        浏览图库
+      </button>
+      <button type="button" ng-click="uploadPicture()"
+              class="button button-block button-balanced">
+        上传
+      </button>
+
+  </ion-content>
+</ion-pane>
 </ion-view>

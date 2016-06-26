@@ -1,6 +1,6 @@
 <ion-view view-title="帮助详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <button class="button button-positive" ng-click="helpHim(help.id,currentuser.id)" ng-if="(help.status=='-1') && (help.user.id!=currentuser.id)">帮他</button>
+    <button class="button button-positive" ng-click="helpHim(help.id)" ng-if="(help.status=='-1') && (help.user.id!=currentuser.id)">帮他</button>
     <!--<button class="button" ng-click="helpOrcancel()" ng-if="(help.helperId==currentuser.id) && (help.status==0)">撤销</button>-->
   </ion-nav-buttons>
 
@@ -20,19 +20,29 @@
       </div>
     </div>
 
-
-    <div>
-      <ion-list>
-        <ion-item>
-
-        </ion-item>
-      </ion-list>
+    <div class="item item-input" ng-if="show_1" >
+      <input class="" type="text" id="detail_1">
+      <button class="button button-positive button-small" ng-click="submitComment(help.id,help.userid);">评论</button>
     </div>
 
-    <div class="item item-input" id="comment">
-      <input class="" type="text">
-      <button class="button button-positive button-small">评论</button>
+    <div class="item item-input" ng-if="show_2">
+      <input class="" type="text" id="detail_2" placeholder="回复：{{replyto.commenternickname}}">
+      <button class="button button-positive button-small" ng-click="submitComment(help.id,replyto.commenterid);">评论</button>
     </div>
+
+    <div class="list list-inset list-borderless" ng-repeat="comment in comments">
+      <div class="item item-body" ng-click="showOrHide(comment.commenter.id,comment.commenter.nickname);">
+        <p>{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
+      </div>
+    </div>
+
   </ion-content>
+
+<!--评论列表-->
+
+
+    <!--失去焦点，不显示:回复xxxxx-->
+<!--评论按钮-->
+
 
 </ion-view>

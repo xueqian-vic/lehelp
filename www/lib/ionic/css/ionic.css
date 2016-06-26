@@ -6394,8 +6394,8 @@ button.item.item-button-right {
   text-overflow: inherit;
   white-space: normal; }
   .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
-    margin-top: 16px;
-    margin-bottom: 16px; }
+    margin-top: 5px;
+    margin-bottom: 5px; }
 
 .item-divider {
   padding-top: 8px;
@@ -6641,7 +6641,7 @@ button.item.item-button-right {
 .card,
 .list-inset {
   overflow: hidden;
-  margin: 20px 10px;
+  margin: 2px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
@@ -7563,7 +7563,7 @@ textarea {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 6px 0 5px 16px; }
+  padding: 2px 0 2px 16px; }
   .item-input input {
     -webkit-border-radius: 0;
     border-radius: 0;

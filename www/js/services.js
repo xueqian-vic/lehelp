@@ -165,14 +165,14 @@ angular.module('starter.services', [])
       tele:'18859271251',
     },
     help:{
-      id: 0,
-      userId:'123',
+      id: 2,
+      userid:'123',
       detail: '地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
       image:'img/bike.jpg',
     },
     status:false,    //是否已被查看
     createtime:'2016-05-21',
-    isHelper:false,  //是否为帮助者。true/false:帮助者/评论者
+    ishelper:false,  //是否为帮助者。true/false:帮助者/评论者
   }, {
     id: 1,
     detail: '我正好在这边，能帮你哦！加你微信了',
@@ -183,14 +183,14 @@ angular.module('starter.services', [])
       tele:'18859271251',
     },
     help:{
-      id: 1,
-      userId:'123',
+      id: 19,
+      userid:'123',
       detail: '地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
       image:null,
     },
     status:false,
     createtime:'2016-05-21',
-    isHelper:false,
+    ishelper:false,
   },{
     id: 2,
     detail: '愿意帮您',
@@ -201,14 +201,14 @@ angular.module('starter.services', [])
       tele:'18859271251',
     },
     help:{
-      id: 4,
-      userId:'123',
+      id: 21,
+      userid:'123',
       detail: '地点：厦大学生公寓，时间：5.25下午三点半。麻烦帮忙拿一下《易中天演讲》的门票。微信号：xq5525458',
       image:null,
     },
     status:false,
     createtime:'2016-05-21',
-    isHelper:true,
+    ishelper:true,
   }];
 
   return {
@@ -357,9 +357,9 @@ angular.module('starter.services', [])
       console.log(helps);
       return helps;
     },
-    get: function(helpId) {
+    get: function(helpid) {
       for (var i = 0; i < helps.length; i++) {
-        if (helps[i].id == parseInt(helpId)) {
+        if (helps[i].id == parseInt(helpid)) {
           return helps[i];
         }
       }

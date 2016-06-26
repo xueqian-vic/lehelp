@@ -2,13 +2,14 @@
   <ion-content>
     <ion-list>
 
-          <ion-item ng-repeat="message in messages" ng-click="jump(message.help.id,message.isHelper,message.commenter.username,message.commenter.tele);">
+          <ion-item ng-repeat="message in messages" ng-click="jump(message.help.id,message.ishelper,message.commenter.username,message.commenter.tele);">
             <div class="row" style="height:80px">
                 <div class="col col-75" style="height:80px">
                   <div class="item item-avatar-left ">
-                    <img ng-src="{{message.commenter.avatar}}">
+                    <!--<img ng-src="{{message.commenter.avatar}}">-->
+                    <img ng-src="img/mike.png">
                     <h2>{{message.commenter.username}}</h2>
-                    <span style="font-size: smaller" ng-if="!message.isHelper">评论：</span><span class="dark" style="font-size: smaller">{{message.detail}}</span>
+                    <span style="font-size: smaller" ng-if="!message.ishelper">评论：</span><span class="dark" style="font-size: smaller">{{message.detail}}</span>
                     <h5>{{message.createtime}}</h5>
                   </div>
                 </div>
@@ -25,5 +26,6 @@
           </ion-item>
 
     </ion-list>
+
   </ion-content>
 </ion-view>

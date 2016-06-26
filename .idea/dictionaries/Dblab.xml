@@ -2,22 +2,36 @@
   <dictionary name="Dblab">
     <words>
       <w>borderless</w>
+      <w>checkmark</w>
+      <w>commenternickname</w>
       <w>currentuser</w>
       <w>currentuserid</w>
+      <w>defaultselect</w>
+      <w>dohelp</w>
+      <w>errereq</w>
       <w>feedbacktele</w>
       <w>feedbacktext</w>
+      <w>helperid</w>
+      <w>helpid</w>
       <w>helptime</w>
+      <w>leftcoins</w>
       <w>maxlength</w>
       <w>messageinfo</w>
+      <w>messageshelp</w>
+      <w>myhelp</w>
+      <w>mysecondhand</w>
       <w>newpwd</w>
       <w>newuser</w>
       <w>oldpwd</w>
+      <w>pricetags</w>
+      <w>secondhandid</w>
       <w>secondhands</w>
       <w>submitfeedback</w>
       <w>submitnewpwd</w>
       <w>tele</w>
       <w>updatepwd</w>
       <w>updatepwdform</w>
+      <w>usecoins</w>
     </words>
   </dictionary>
 </component>
