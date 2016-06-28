@@ -1,28 +1,35 @@
 <ion-view view-title="我的帮助"  hide-tabs="true" >
-  <ion-content>
+  <ion-content ng-controller="MyHelps_Refresh">
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()" spinner="android"></ion-refresher>
+
     <ion-list class="list-borderless">
-      <ion-item ng-repeat="help in helps |filter:{'userid':currentuser.id}| orderBy:['status','createtime']"  href="#/tab/myhelps/{{help.id}}">
+      <ion-item ng-repeat="help in helps"  href="#/tab/myhelps/{{help.id}}">
         <div class="list card">
 
           <div class="row">
             <div class="col col-80">
               <div class="item item-avatar">
-                <!--<img src="{{help.user.avatar}}">-->
-                <img src="img/mike.png">
+                <img ng-src="http://120.27.97.21/lehelp/{{help.user.avatar}}">
                 <h2>{{help.user.nickname}}</h2>
-                <p>{{help.createtime}}</p>
+                <p>{{help.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</p>
               </div>
             </div>
             <div class="col col-20">
+
+              <span class="royal" style="font-size: smaller;border:1px solid #B23AEE;" ng-if="(help.status!='-1')&&(help.helperid==currentuser.id)">我帮他</span>
+              <br>
               <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="help.status=='-1'">待帮助</span>
               <span class="balanced" style="font-size: smaller;border:1px solid #00CD00;" ng-if="help.status=='0'">帮助中</span>
               <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="help.status=='1'">已解决</span>
+
+              <br>
+              <span class="assertive"><img ng-src="img/coins.png" style="width: 12px;height: 12px;">{{help.coins}}</span>
             </div>
           </div>
 
           <div class="item item-body">
-            <!--<img class="full-image" src="{{help.image}}" ng-if="help.image">-->
-            <img class="full-image" src="img/bike.jpg" ng-if="help.image">
+            <img class="full-image" ng-src="http://120.27.97.21/lehelp/{{help.image}}" ng-if="help.image">
             <p>
               {{help.detail}}
             </p>
@@ -32,21 +39,10 @@
           </div>
 
         </div>
-
       </ion-item>
     </ion-list>
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore();" distance="5%" spinner="android"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
 

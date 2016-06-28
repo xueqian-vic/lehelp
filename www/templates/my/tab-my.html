@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-avatar-left">
-        <img ng-src="{{currentuser.avatar}}"/>
+        <img ng-src="http://120.27.97.21/lehelp/{{currentuser.avatar}}"/>
         <h3>{{currentuser.nickname}}</h3>
         <p>乐帮ID:{{currentuser.id}}</p>
       </ion-item>
@@ -19,7 +19,13 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
 
-      <ion-item class="item-icon-left item-icon-right">
+      <!--<ion-item class="item-icon-left item-icon-right" ng-click="showCoins();">-->
+        <!--<i class=" icon ion-card"></i>-->
+        <!--<h3>我的账户</h3>-->
+        <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+      <!--</ion-item>-->
+
+      <ion-item class="item-icon-left">
         <i class=" icon ion-card"></i>
         <h3>我的账户</h3>
         <i class="badge badge-assertive">{{currentuser.coins}}</i>
@@ -36,6 +42,11 @@
         <h3>反馈</h3>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
+
+
     </ion-list>
+    <div class="padding">
+      <a class="button button-block  button-assertive" ng-click="logout();">退出登录</a>
+    </div>
   </ion-content>
 </ion-view>

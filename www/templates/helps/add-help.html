@@ -8,7 +8,6 @@
       <textarea style="width:100%;maxlength:200" required rows="10" placeholder="请输入求助内容" id="detail"></textarea>
     </div>
 
-
       <button type="button" ng-click="takePicture()"
               class="button button-block button-balanced">
         拍摄
@@ -23,10 +22,21 @@
       </button>
 
     <div class="item item-divider">
-      <select ng-model="selected" ng-options="o.value for o in optData">
-        <option value="">--请选择悬赏币--</option>
+      <!--<select ng-model="selected" ng-options="o.text for o in optData" id="coins">-->
+        <!--<option >&#45;&#45;请选择悬赏币&#45;&#45;</option>-->
+      <!--</select>-->
+
+      <select id='usecoins' ng-change="test(x)" ng-model="x">
+        <option value="" selected = "selected">----请选择悬赏币----</option>
+        <option value='0' >0</option>
+        <option value="10">10</option>
+        <option value='20'>20</option>
+        <option value='30'>30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
       </select>
-      <span class="assertive">余额：{{leftcoins-selected.value<0 ? '余额不足':leftcoins-selected.value}}</span>
+      <span id='yue' class="assertive">余额：{{currentuser.coins}}</span>
+
     </div>
 
   </ion-content>

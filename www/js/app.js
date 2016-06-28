@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])    //注入starter这个模块，不然ng-app="starter"会报错，只能写""
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])    //注入starter这个模块，不然ng-app="starter"会报错，只能写""
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -78,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-helps': {
           templateUrl: 'templates/helps/help-detail.html',
-          controller: 'HelpsCtrl'
+          controller: 'HelpDetailCtrl'
         }
       }
     })
@@ -88,11 +88,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-helps': {
           templateUrl: 'templates/helps/add-help.html',
-          controller: 'HelpsCtrl'
+          controller: 'AddHelpCtrl'
         }
       }
     })
 
+    .state('tab.update-help', {
+      url: '/update-help',
+      views: {
+        'tab-my': {
+          templateUrl: 'templates/helps/update-help.html',
+          controller: 'UpdateHelpCtrl'
+        }
+      }
+    })
     .state('tab.secondhands', {
       url: '/secondhands',
       views: {
@@ -108,7 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-secondhands': {
           templateUrl: 'templates/secondhands/secondhand-detail.html',
-          controller: 'SecondhandsCtrl'
+          controller: 'SecondhandDetailCtrl'
         }
       }
     })
@@ -118,7 +127,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-secondhands': {
           templateUrl: 'templates/secondhands/add-secondhand.html',
-          controller: 'SecondhandsCtrl'
+          controller: 'AddSecondhandCtrl'
+        }
+      }
+    })
+    .state('tab.update-secondhand', {
+      url: '/update-secondhand',
+      views: {
+        'tab-my': {
+          templateUrl: 'templates/secondhands/update-secondhand.html',
+          controller: 'UpdateSecondhandCtrl'
         }
       }
     })
@@ -138,7 +156,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-messages': {
           templateUrl: 'templates/messages/help-detail.html',
-          controller: 'HelpsCtrl'
+          controller: 'HelpDetailCtrl'
         }
       }
     })
@@ -158,7 +176,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     views: {
       'tab-my': {
         templateUrl: 'templates/my/my-helps.html',
-        controller: 'HelpsCtrl'
+        controller: 'MyHelpsCtrl'
       }
     }
   })
@@ -167,7 +185,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-my': {
           templateUrl: 'templates/my/myhelp-detail.html',
-          controller: 'HelpsCtrl'
+          controller: 'MyHelpDetailCtrl'
         }
       }
     })
@@ -177,7 +195,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
     views: {
       'tab-my': {
         templateUrl: 'templates/my/my-secondhands.html',
-        controller: 'SecondhandsCtrl'
+        controller: 'MySecondhandsCtrl'
       }
     }
   })
@@ -187,7 +205,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']) 
       views: {
         'tab-my': {
           templateUrl: 'templates/my/mysecondhand-detail.html',
-          controller: 'SecondhandsCtrl'
+          controller: 'MySecondhandDetailCtrl'
         }
       }
     })

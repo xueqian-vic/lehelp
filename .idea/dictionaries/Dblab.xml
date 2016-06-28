@@ -2,32 +2,48 @@
   <dictionary name="Dblab">
     <words>
       <w>borderless</w>
+      <w>changecoins</w>
       <w>checkmark</w>
+      <w>chushihua</w>
       <w>commenternickname</w>
+      <w>cordova</w>
       <w>currentuser</w>
       <w>currentuserid</w>
       <w>defaultselect</w>
       <w>dohelp</w>
+      <w>dologin</w>
+      <w>edithelpstatus</w>
+      <w>editsecondhandstatus</w>
       <w>errereq</w>
       <w>feedbacktele</w>
       <w>feedbacktext</w>
       <w>helperid</w>
       <w>helpid</w>
+      <w>helpinfo</w>
       <w>helptime</w>
       <w>leftcoins</w>
+      <w>lehelp</w>
       <w>maxlength</w>
       <w>messageinfo</w>
       <w>messageshelp</w>
+      <w>msgcounts</w>
+      <w>msgid</w>
       <w>myhelp</w>
       <w>mysecondhand</w>
       <w>newpwd</w>
       <w>newuser</w>
+      <w>oldhelp</w>
       <w>oldpwd</w>
+      <w>postdata</w>
       <w>pricetags</w>
+      <w>pushrefresh</w>
       <w>secondhandid</w>
+      <w>secondhandinfo</w>
       <w>secondhands</w>
       <w>submitfeedback</w>
       <w>submitnewpwd</w>
+      <w>tabhalprefresh</w>
+      <w>tabhelp</w>
       <w>tele</w>
       <w>updatepwd</w>
       <w>updatepwdform</w>

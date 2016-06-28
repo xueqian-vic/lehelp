@@ -1,12 +1,17 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Victoria">
     <words>
+      <w>addhelp</w>
       <w>chatbox</w>
       <w>commenterid</w>
       <w>createtime</w>
       <w>ishelper</w>
       <w>myhelps</w>
       <w>mysecondhands</w>
+      <w>newflag</w>
+      <w>oldsecondhand</w>
+      <w>subcoins</w>
+      <w>usercoins</w>
       <w>userid</w>
     </words>
   </dictionary>

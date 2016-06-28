@@ -1,31 +1,33 @@
 <ion-view view-title="消息通知">
-  <ion-content>
-    <ion-list>
+  <ion-content ng-controller="Message_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()" spinner="android"></ion-refresher>
+    <div class="list list-inset list-borderless">
 
-          <ion-item ng-repeat="message in messages" ng-click="jump(message.help.id,message.ishelper,message.commenter.username,message.commenter.tele);">
-            <div class="row" style="height:80px">
-                <div class="col col-75" style="height:80px">
-                  <div class="item item-avatar-left ">
-                    <!--<img ng-src="{{message.commenter.avatar}}">-->
-                    <img ng-src="img/mike.png">
-                    <h2>{{message.commenter.username}}</h2>
-                    <span style="font-size: smaller" ng-if="!message.ishelper">评论：</span><span class="dark" style="font-size: smaller">{{message.detail}}</span>
-                    <h5>{{message.createtime}}</h5>
-                  </div>
+              <div class="item" style="padding-bottom: 0px;padding-top: 0px;border:1px solid #C1CDC1;" ng-repeat="message in messages |orderBy:['status']"
+                   ng-click="jump(message.id,message.helpid,message.ishelper,message.commenter.nickname,message.commenter.tele);">
+
+                <div class="row">
+                    <div class="col col-75">
+                      <div class="item item-avatar">
+                        <img ng-src="http://120.27.97.21/lehelp/{{message.commenter.avatar}}">
+                        <h2>{{message.commenter.nickname}}</h2>
+                        <span style="font-size: smaller" ng-if="!message.ishelper">评论：</span><span class="dark" style="font-size: smaller">{{message.detail}}</span>
+                        <h5>{{message.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</h5>
+                      </div>
+                    </div>
+                    <div class="col col-25">
+                      <div class="item item-body" style="font-size:x-small;border:1px solid #C1CDC1;padding: 0 0 0 0;">
+                        <span>{{message.help.detail  | limitTo : 20}}</span>
+                        <i class="badge badge-assertive" ng-if="(message.status==0)">1</i>
+                      </div>
+                    </div>
                 </div>
 
-                <div class="col col-25" style="height:80px">
-                  <div class="item item-body" style="font-size:xx-small;border:1px solid #C1CDC1">
-                    <span>{{message.help.detail  | limitTo : 8}}</span>
-                  </div>
-                </div>
-              <ion-option-button class="button-assertive" ng-click="">
-                删除
-              </ion-option-button>
-            </div>
-          </ion-item>
-
-    </ion-list>
+              </div>
+    </div>
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore();" spinner="android" distance="5%"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>

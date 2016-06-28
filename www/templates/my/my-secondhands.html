@@ -1,15 +1,16 @@
 <ion-view view-title="我的二手"  hide-tabs="true" >
-  <ion-content>
+  <ion-content ng-controller="MySecondhands_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh();" spinner="android"></ion-refresher>
     <ion-list class="list-borderless">
-      <ion-item ng-repeat="secondhand in secondhands |filter:{'userid':currentuser.id}| orderBy:['createtime']"  href="#/tab/mysecondhands/{{secondhand.id}}">
+      <ion-item ng-repeat="secondhand in secondhands "  href="#/tab/mysecondhands/{{secondhand.id}}">
         <div class="list card">
           <div class="row">
             <div class="col col-80">
               <div class="item item-avatar">
-                <img src="img/mike.png">
-                <!--<img src="{{secondhand.user.avatar}}">-->
+                <img ng-src="http://120.27.97.21/lehelp/{{secondhand.user.avatar}}">
                 <h2>{{secondhand.user.nickname}}</h2>
-                <p>{{secondhand.createtime}}</p>
+                <p>{{secondhand.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</p>
               </div>
             </div>
             <div class="col col-20">
@@ -21,8 +22,7 @@
           </div>
 
           <div class="item item-body">
-            <img class="full-image" src="img/bike.jpg" ng-if="secondhand.image">
-            <!--<img class="full-image" src="{{secondhand.image}}" ng-if="secondhand.image">-->
+            <img class="full-image" ng-src="http://120.27.97.21/lehelp/{{secondhand.image}}" ng-if="secondhand.image">
             <p>
               {{secondhand.detail}}
             </p>
@@ -31,7 +31,8 @@
 
       </ion-item>
     </ion-list>
-
+    <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <ion-infinite-scroll ng-if="hasmore" on-infinite="loadMore();" distance="5%" spinner="android"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
 

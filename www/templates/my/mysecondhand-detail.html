@@ -1,25 +1,26 @@
 <ion-view view-title="二手详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <a class="button" ng-click="show(secondhand.id);">···</a>
+    <a class="button" ng-click="show1(secondhand.id);" ng-if="secondhand.status==0">···</a>
+    <a class="button" ng-click="show2(secondhand.id);" ng-if="secondhand.status==1">···</a>
   </ion-nav-buttons>
-  <ion-content>
-    <ion-item class="card ">
-      <div class="list list-borderless">
-        <div class="item item-avatar-left">
-          <!--<img ng-src="{{secondhand.user.avatar}}">-->
-          <img ng-src="img/mike.png">
-          <h2>{{secondhand.user.nickname}}</h2>
-          <h5>{{secondhand.createtime}}</h5>
-        </div>
-        <div class="item">
-          <p>{{secondhand.detail}}</p>
-        </div>
-        <div class="item item-image" ng-if="secondhand.image">
-          <img src="img/bike.jpg" >
-          <!--<img src="{{secondhand.image}}" ng-if="secondhand.image">-->
-        </div>
+
+  <ion-content ng-controller="MySecondhandDetail_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh();" spinner="android"></ion-refresher>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img ng-src="http://120.27.97.21/lehelp/{{secondhand.user.avatar}}">
+        <h2>{{secondhand.user.nickname}}</h2>
+        <p>{{secondhand.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</p>
       </div>
-    </ion-item>
+
+      <div class="item item-body">
+        <img class="full-image" ng-src="http://120.27.97.21/lehelp/{{secondhand.image}}"  ng-if="secondhand.image">
+        <p>
+          {{secondhand.detail}}
+        </p>
+      </div>
+    </div>
   </ion-content>
 
 </ion-view>

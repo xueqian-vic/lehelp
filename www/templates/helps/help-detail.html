@@ -1,19 +1,21 @@
 <ion-view view-title="帮助详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <button class="button button-positive" ng-click="helpHim(help.id)" ng-if="(help.status=='-1') && (help.user.id!=currentuser.id)">帮他</button>
+    <button class="button button-positive" ng-click="helpHim(help.id)" ng-if="(help.status=='-1') && (help.user.id!= currentuser.id)">帮他</button>
     <!--<button class="button" ng-click="helpOrcancel()" ng-if="(help.helperId==currentuser.id) && (help.status==0)">撤销</button>-->
   </ion-nav-buttons>
 
-  <ion-content>
+  <ion-content ng-controller="HelpDetail_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh();" spinner="android"></ion-refresher>
     <div class="list card">
       <div class="item item-avatar">
-        <img src="img/mike.png">     <!--模拟代码测试-->
+        <img ng-src="http://120.27.97.21/lehelp/{{help.user.avatar}}">     <!--模拟代码测试-->
         <h2>{{help.user.nickname}}</h2>
-        <p>{{help.createtime}}</p>
+        <p>{{help.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</p>
       </div>
 
       <div class="item item-body">
-        <img class="full-image" src="img/bike.jpg" ng-if="help.image">  <!--模拟代码测试-->
+        <img class="full-image" src="http://120.27.97.21/lehelp/{{help.image}}" ng-if="help.image">  <!--模拟代码测试-->
         <p>
           {{help.detail}}
         </p>
@@ -30,8 +32,8 @@
       <button class="button button-positive button-small" ng-click="submitComment(help.id,replyto.commenterid);">评论</button>
     </div>
 
-    <div class="list list-inset list-borderless" ng-repeat="comment in comments">
-      <div class="item item-body" ng-click="showOrHide(comment.commenter.id,comment.commenter.nickname);">
+    <div class="list list-inset list-borderless">
+      <div class="item item-body" ng-repeat="comment in comments" ng-click="showOrHide(comment.commenter.id,comment.commenter.nickname);">
         <p>{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
       </div>
     </div>

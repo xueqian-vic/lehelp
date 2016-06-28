@@ -1,17 +1,16 @@
 <ion-view view-title="二手详情"  hide-tabs="true">
-  <ion-content>
-
+  <ion-content ng-controller="MySecondhandDetail_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh();" spinner="android"></ion-refresher>
     <div class="list card">
       <div class="item item-avatar">
-        <img src="img/mike.png">
-        <!--<img src="{{secondhand.user.avatar}}">-->
+        <img ng-src="http://120.27.97.21/lehelp/{{secondhand.user.avatar}}">
         <h2>{{secondhand.user.nickname}}</h2>
-        <p>{{secondhand.createtime}}</p>
+        <p>{{secondhand.createtime*1000 | date:"MM/dd/yyyy @ h:mma"}}</p>
       </div>
 
       <div class="item item-body">
-        <img class="full-image" src="img/bike.jpg"  ng-if="secondhand.image">
-        <!--<img class="full-image" src="{{secondhand.image}}"  ng-if="secondhand.image">-->
+        <img class="full-image" ng-src="http://120.27.97.21/lehelp/{{secondhand.image}}"  ng-if="secondhand.image">
         <p>
           {{secondhand.detail}}
         </p>

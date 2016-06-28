@@ -33,33 +33,46 @@
     <!--crossorigin="anonymous"></script>-->
 </head>
 
-<body ng-app="starter" ng-controller="LoginCtrl">
+<body ng-app="starter" ng-controller="RegisterCtrl">
 
 <div class="bar bar-header">
-  <h1 class="title">登录</h1>
+  <h1 class="title">注册</h1>
 </div>
 
 <div class="scroll-content has-header">
   <!--<form method="get">-->
   <div class="list">
+    <div class="item item-input item-input-inset">
+      <i class="icon ion-ios-unlocked-outline positive"></i>
+      <input type="text" placeholder="请输入您的手机号码" id="tele" ng-maxlength="11">
+    </div>
     <label class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
       <!--<span class="input-label">年龄</span>-->
       <input type="text" placeholder="请输入您的用户名" ng-maxlength="20"  id="username">
     </label>
+    <label class="item item-input item-input-inset">
+      <i class="icon ion-ios-unlocked-outline positive"></i>
+      <input type="text" placeholder="请输入您的昵称"  id="nickname" ng-maxlength="20">
+    </label>
 
     <label class="item item-input item-input-inset">
       <i class="icon ion-ios-unlocked-outline positive"></i>
-      <input type="password" placeholder="请输入密码"  id="password"  required="required" ng-maxlength="20">
+      <input type="password" placeholder="请设置密码"  id="password"  required="required" ng-maxlength="20">
+    </label>
+
+    <label class="item item-input item-input-inset">
+      <i class="icon ion-ios-unlocked-outline positive"></i>
+      <input type="password" placeholder="请重复密码"  id="r_password" required="required" ng-maxlength="20">
     </label>
   </div>
 
   <div class="padding">
-    <button class="button button-block button-positive" ng-click="login();">登录</button>
+    <button class="button button-block button-positive" ng-click="register();">注册</button>
   </div>
 
   <div class="padding">
-    <a class="button button-block  button-positive" href="register.html">注册</a>
+    <a class="button button-block button-positive" href="index.html">登录</a>
   </div>
   <!--</form>-->
 </div>
