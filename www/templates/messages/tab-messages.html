@@ -4,7 +4,7 @@
     <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()" spinner="android"></ion-refresher>
     <div class="list list-inset list-borderless">
 
-              <div class="item" style="padding-bottom: 0px;padding-top: 0px;border:1px solid #C1CDC1;" ng-repeat="message in messages |orderBy:['status']"
+              <div class="item" style="padding-bottom: 0px;padding-top: 0px;border:1px solid #C1CDC1;" ng-repeat="message in messages | orderBy:['status']"
                    ng-click="jump(message.id,message.helpid,message.ishelper,message.commenter.nickname,message.commenter.tele);">
 
                 <div class="row">

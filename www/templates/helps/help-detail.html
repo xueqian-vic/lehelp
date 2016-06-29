@@ -34,7 +34,8 @@
 
     <div class="list list-inset list-borderless">
       <div class="item item-body" ng-repeat="comment in comments" ng-click="showOrHide(comment.commenter.id,comment.commenter.nickname);">
-        <p>{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
+        <p ng-if="comment.ishelper==0">{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
+        <p  style="color: #436EEE"  ng-if="comment.ishelper==1">{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
       </div>
     </div>
 

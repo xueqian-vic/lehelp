@@ -1,5 +1,7 @@
 <ion-view view-title="我的">
-  <ion-content>
+  <ion-content ng-controller="My_Refresh">
+    <!-- <ion-refresher> 下拉刷新指令  -->
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh();" spinner="android"></ion-refresher>
     <ion-list>
       <ion-item class="item-avatar-left">
         <img ng-src="http://120.27.97.21/lehelp/{{currentuser.avatar}}"/>

@@ -2,15 +2,6 @@ angular.module('starter.controllers', ['ngCookies'])
 
   //初始化数据
 .run(function($rootScope) {
-
-  // $rootScope.currentuser = {
-  //   id:0,
-  //   username:0,
-  //   nickname:0,
-  //   tele:0,
-  //   avatar:0,
-  //   coins:0
-  // };
     $rootScope.commentCount = 0;
 })
 
@@ -30,6 +21,9 @@ angular.module('starter.controllers', ['ngCookies'])
       $http.get('http://120.27.97.21/lehelp/index.php/home/User/msgcounts',{params:{'userid':$rootScope.currentuser.id,'status':0}}).success(function(data) {
         $rootScope.commentCount = data.counts;
       });
+
+
+
     },2000);
 
     $scope.$broadcast('to-child', $rootScope.commentCount);
@@ -369,7 +363,6 @@ angular.module('starter.controllers', ['ngCookies'])
 
       /* state:1初始化，2刷新，3加载更多 */
       function chushihua(obj_data,state){
-        console.log('执行下拉');
         if(!run){
           run = true;
 
@@ -380,7 +373,6 @@ angular.module('starter.controllers', ['ngCookies'])
                 $scope.helps = $scope.helps.concat(data.helps);
                 obj.page += 1;
               }else{
-                console.log("结束");
                 $scope.hasmore = false;
               }
             }else{
@@ -396,8 +388,6 @@ angular.module('starter.controllers', ['ngCookies'])
     $http.get('http://120.27.97.21/lehelp/index.php/Home/User/search',{params:{'username':$stateParams.username}}).success(function(data){
       $rootScope.currentuser =  data.user;
       $scope.$emit("to-parent", $rootScope.currentuser);
-      console.log('helpsctrl---data.user');
-      console.log(data.user);
     });
 
     // $scope.$on('to-child-user', function(e, d) {
@@ -405,12 +395,8 @@ angular.module('starter.controllers', ['ngCookies'])
     // });
       //获取求助信息list
     $http.get('http://120.27.97.21/lehelp/index.php/home/Help/index').success(function(data){
-      console.log('enter search helps');
-      console.log(data.helps);
       $scope.helps =  data.helps;
   });
-    console.log('当前登录的user');
-    console.log($rootScope.currentuser);
 })
   .controller('AddHelpCtrl',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http,$ionicHistory) {
     // $scope.$on('to-child-user', function(e, d) {
@@ -434,7 +420,29 @@ angular.module('starter.controllers', ['ngCookies'])
       var helperid = 0;
       var helptime = 0;
       var status = '-1';
-      if(coins) {
+      if($scope.flagcoins=='1'){
+        console.log("$scope.flagcoins=='1'");
+        $ionicLoading.show({
+          template: "请选择悬赏额",
+          duration: 1000
+        });
+      }
+      else if($scope.leftcoins=='账户余额不足') {
+        console.log("$scope.leftcoins=='账户余额不足'");
+        $ionicLoading.show({
+          template: "余额不足，无法发布",
+          duration: 1000
+        });
+      }
+      else if(detail.trim()==''){
+        console.log("detail.trim()==''");
+        $ionicLoading.show({
+          template: "求助信息不能为空",
+          duration: 1000
+        });
+      }
+      else{
+        console.log("else---");
         var postData = {
           userid: userid,
           helperid: helperid,
@@ -480,12 +488,8 @@ angular.module('starter.controllers', ['ngCookies'])
               }
             }).success(function (req) {
               if (req.status == 1) {
-                console.log('subcoins is success ' + coins);
-                console.log(req);
                 $rootScope.currentuser.coins = $rootScope.currentuser.coins - coins;
                 $scope.$emit('to-parent',$rootScope.currentuser);
-                console.log('$rootScope.currentuser.coins--');
-                console.log($rootScope.currentuser.coins);
                 $ionicLoading.show({
                   template: "发布成功",
                   duration: 1000
@@ -494,11 +498,6 @@ angular.module('starter.controllers', ['ngCookies'])
               }
             });
           }
-        });
-      }else{
-        $ionicLoading.show({
-          template: "请选择悬赏额",
-          duration: 1000
         });
       }
     };
@@ -533,7 +532,27 @@ angular.module('starter.controllers', ['ngCookies'])
     };
 
     $scope.updateHelp = function () {
-      if($scope.leftcoins!='账户余额不足') {
+
+      if($scope.flagcoins=='1'){
+        $ionicLoading.show({
+          template: "请选择悬赏额",
+          duration: 1000
+        });
+      }
+      else if($scope.leftcoins=='账户余额不足') {
+        $ionicLoading.show({
+          template: "余额不足，无法发布",
+          duration: 1000
+        });
+      }
+      else if(detail.trim()==''){
+        console.log("detail.trim()==''");
+        $ionicLoading.show({
+          template: "求助信息不能为空",
+          duration: 1000
+        });
+      }
+      else {
         var detail = document.getElementById('detail').value;
         var image = '';
         var coins = $scope.flagcoins;
@@ -541,17 +560,15 @@ angular.module('starter.controllers', ['ngCookies'])
         var helperid = $scope.oldhelp.helperid;
         var helptime = $scope.oldhelp.helptime;
         var status = $scope.oldhelp.status;
-
-        if (coins) {
-          var postData = {
-            userid: userid,
-            helperid: helperid,
-            helptime: helptime,
-            detail: detail,
-            image: image,
-            coins: coins,
-            status: status
-          };
+        var postData = {
+          userid: userid,
+          helperid: helperid,
+          helptime: helptime,
+          detail: detail,
+          image: image,
+          coins: coins,
+          status: status
+        };
           //修改求助
           $http({
             method: 'post',
@@ -568,8 +585,6 @@ angular.module('starter.controllers', ['ngCookies'])
             }
           }).success(function (req) {
             if (req.status == 1) {
-              console.log('updatehelp is success');
-              console.log(req);
               //增加或减少求助者的金币数
               var postdata = {
                 userid: $rootScope.currentuser.id,
@@ -590,8 +605,6 @@ angular.module('starter.controllers', ['ngCookies'])
                 }
               }).success(function (req) {
                 if (req.status == 1) {
-                  console.log('subcoins is success ' + coins);
-                  console.log(req);
                   $rootScope.currentuser.coins = parseInt($rootScope.currentuser.coins)  - parseInt(coins);
 
                   $ionicLoading.show({
@@ -603,14 +616,8 @@ angular.module('starter.controllers', ['ngCookies'])
               });
             }
           });
-        } else {
-          $ionicLoading.show({
-            template: "请选择悬赏额",
-            duration: 1000
-          });
         }
-      }
-    };
+      };
   })
 //二手专区控制器
   .controller('SecondhandsCtrl', function($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,$rootScope,$http,$ionicHistory) {
@@ -730,32 +737,39 @@ angular.module('starter.controllers', ['ngCookies'])
           flag = temp[i].value;
         }
       }
-      var postData = {
-        userid:userid,
-        detail:detail,
-        image:image,
-        flag:flag,
-        status:status
-      };
-      $http({
-        method:'post',
-        url:'http://120.27.97.21/lehelp/index.php/home/SecondHand/add/session_id/111111',
-        data:postData,
-        headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj){
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          }
-          return str.join("&");
-        }
-      }).success(function(req){
+      if(detail.trim()==''){
         $ionicLoading.show({
-          template: "发布成功",
-          duration:1000
+          template: "二手信息不能为空",
+          duration: 1000
         });
-        $ionicHistory.goBack();
-      });
+      }else {
+        var postData = {
+          userid: userid,
+          detail: detail,
+          image: image,
+          flag: flag,
+          status: status
+        };
+        $http({
+          method: 'post',
+          url: 'http://120.27.97.21/lehelp/index.php/home/SecondHand/add/session_id/111111',
+          data: postData,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: function (obj) {
+            var str = [];
+            for (var p in obj) {
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+            return str.join("&");
+          }
+        }).success(function (req) {
+          $ionicLoading.show({
+            template: "发布成功",
+            duration: 1000
+          });
+          $ionicHistory.goBack();
+        });
+      }
     };
   })
   .controller('UpdateSecondhandCtrl',function ($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,$rootScope,$http,$ionicHistory) {
@@ -778,26 +792,28 @@ angular.module('starter.controllers', ['ngCookies'])
       status:$stateParams.status,
       flag:$stateParams.flag
     };
-console.log('print $scope.oldsecondhand----');
-console.log($scope.oldsecondhand);
     $scope.updateSecondhand = function () {
-      var newflag;
+      var newflag='';
       var temp = document.getElementsByName("group");
       for(var i=0;i<temp.length;i++)
       {
         if(temp[i].checked){
           newflag = temp[i].value;
-          $scope.defaultselect = newflag;
         }
       }
       var detail = document.getElementById('detail').value;
       var image = '';
-      // var image = 'Public/Images/guo01.jpg';
       var userid = $scope.oldsecondhand.userid;
       var flag = newflag;
       var status = $scope.oldsecondhand.status;
 
-      if(newflag) {
+      if(detail.trim()==''){
+        $ionicLoading.show({
+          template: "二手信息不能为空",
+          duration: 1000
+        });
+      }
+      else {
         var postData = {
           userid: userid,
           flag:flag,
@@ -827,14 +843,10 @@ console.log($scope.oldsecondhand);
             $ionicHistory.goBack();
           }
         });
-      }else{
-        $ionicLoading.show({
-          template: "请选择二手类型",
-          duration: 1000
-        });
       }
     };
   })
+
   .controller('MessagesCtrl', function($scope,$location, $ionicPopup,$ionicLoading,$rootScope,$http) {
     // $scope.$on('to-child-user', function(e, d) {
     //   $rootScope.currentuser = d;
@@ -842,6 +854,9 @@ console.log($scope.oldsecondhand);
 
     $http.get('http://120.27.97.21/lehelp/index.php/home/Message/index', {params: {'userid': $rootScope.currentuser.id}}).success(function (data) {
       $scope.messages = data.messages;
+      console.log('messagectrl----');
+      console.log(data.messages);
+
     });
 
     $scope.jump = function (id, helpid, ishelper, nickname, tele) {
@@ -919,6 +934,8 @@ console.log($scope.oldsecondhand);
           if (state==3) {
             if (data.status != 0){
               $scope.messages = $scope.messages.concat(data.messages);
+              console.log('下拉刷新 新消息通知');
+              console.log(data.messages);
               obj.page += 1;
             }else{
               console.log("结束");
@@ -1055,7 +1072,16 @@ console.log($scope.oldsecondhand);
       }
     }
   })
+  .controller('My_Refresh',function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {
+    $scope.doRefresh = function(){
+      $http.get('http://120.27.97.21/lehelp/index.php/Home/User/search',{params:{'username':$rootScope.currentuser.username}}).success(function(data){
+        $rootScope.currentuser =  data.user;
 
+      });
+      $scope.$broadcast('scroll.refreshComplete');
+    };
+
+  })
   .controller('MyHelps_Refresh',function($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {
     // $scope.$on('to-child-user', function(e, d) {
     //   $rootScope.currentuser = d;
@@ -1104,6 +1130,7 @@ console.log($scope.oldsecondhand);
       }
     }
   })
+
   .controller('MyHelpsCtrl',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {
     // $scope.$on('to-child-user', function(e, d) {
     //   $rootScope.currentuser = d;
@@ -1216,22 +1243,40 @@ console.log($scope.oldsecondhand);
               location.href = 'main.html#/tab/update-help/'+$scope.help.id+'/'+$scope.help.userid+'/'+$scope.help.helperid+'/'+$scope.help.detail+'/'+$scope.help.image+'/'+$scope.help.coins+'/'+$scope.help.status+'/'+$scope.help.helptime;
 
             } else if (index == 1) {
-              $http.get('http://120.27.97.21/lehelp/index.php/home/Help/edithelpstatus', {
-                params: {
-                  'helpid': helpid,
-                  'status': 1
-                }
-              }).success(function (data) {
+              $http.get('http://120.27.97.21/lehelp/index.php/home/Help/edithelpstatus', {params: {'helpid': helpid, 'status': 1}}).success(function (data) {
                 if (data.status == 1) {
-                  $ionicLoading.show({
-                    template: "取消求助成功",
-                    duration: 1000
+                  var postdata = {
+                    userid: $scope.help.userid,
+                    usecoins: $scope.help.coins,
+                    flag: 1
+                  };
+                  $http({
+                    method: 'post',
+                    url: 'http://120.27.97.21/lehelp/index.php/home/User/changecoins',
+                    data: postdata,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    transformRequest: function (obj) {
+                      var str = [];
+                      for (var p in obj) {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                      }
+                      return str.join("&");
+                    }
+                  }).success(function (req) {
+                    if(req.status==1) {
+                      $timeout(function () {
+                        hideSheet();
+                      }, 100);
+                      $ionicLoading.show({
+                        template: "取消求助成功",
+                        duration: 1000
+                      });
+                      console.log('before --' + $rootScope.currentuser.coins);
+                      console.log('before --' + $rootScope.currentuser.coins);
+                      $rootScope.currentuser.coins = parseInt($rootScope.currentuser.coins) + parseInt($scope.help.coins);
+                      console.log('after --' + $rootScope.currentuser.coins);
+                    }
                   });
-                  console.log('before --' + $rootScope.currentuser.coins);
-                  console.log('before --' + $rootScope.currentuser.coins);
-                  $rootScope.currentuser.coins = parseInt($rootScope.currentuser.coins) + parseInt($scope.help.coins);
-                  console.log('after --' + $rootScope.currentuser.coins);
-
                 }
               });
 
@@ -1266,6 +1311,8 @@ console.log($scope.oldsecondhand);
                     usecoins: $scope.help.coins,
                     flag: 1
                   };
+                  console.log('postdatapostdatapostdatapostdatapostdata');
+                  console.log(postdata);
                   $http({
                     method: 'post',
                     url: 'http://120.27.97.21/lehelp/index.php/home/User/changecoins',
@@ -1304,8 +1351,25 @@ console.log($scope.oldsecondhand);
               });
 
             }else if(index==1){
-              $http.get('http://120.27.97.21/lehelp/index.php/home/Help/edithelpstatus',{params:{'helpid':helpid,'status':-1}}).success(function(data) {
-                if (data.status == 1) {
+
+
+              //修改help.status=-1
+              var postdata={'status':-1,'helperid':0,'helpid':helpid};
+
+              $http({
+                method:'post',
+                url:'http://120.27.97.21/lehelp/index.php/home/Help/dohelp',
+                data:postdata,
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                  var str = [];
+                  for(var p in obj){
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                  }
+                  return str.join("&");
+                }
+              }).success(function(req){
+                if (req.status == 1) {
                   $ionicLoading.show({
                     template: "请继续等待帮助",
                     duration: 1000
@@ -1361,6 +1425,50 @@ console.log($scope.oldsecondhand);
           }
         });
       };
+
+    //上拉菜单：撤销帮助，取消
+    $scope.show4 = function (helpid) {
+
+      // Show the action sheet
+      var hideSheet = $ionicActionSheet.show({
+        cancelOnStateChange: true,
+        cssClass: 'action_s',
+        cancelText: "取消",
+        cancel: function () {
+          return true;
+        },
+        destructiveText: "撤销帮助",
+        destructiveButtonClicked: function () {    //删除求助信息
+
+          //修改help.status=-1
+          var postdata={'status':-1,'helperid':0,'helpid':helpid};
+
+          $http({
+            method:'post',
+            url:'http://120.27.97.21/lehelp/index.php/home/Help/dohelp',
+            data:postdata,
+            headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj) {
+              var str = [];
+              for(var p in obj){
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              }
+              return str.join("&");
+            }
+          }).success(function(req){
+            if (req.status == 1) {
+              $ionicLoading.show({
+                template: "撤销帮助成功",
+                duration: 1000
+              });
+              $timeout(function () {
+                hideSheet();
+              }, 100);
+            }
+          });
+        }
+      });
+    };
 
     })
   .controller('MyHelpDetail_Refresh',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {

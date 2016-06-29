@@ -1,8 +1,11 @@
 <ion-view view-title="帮助详情"  hide-tabs="true">
   <ion-nav-buttons side="right">
-    <a class="button" ng-click="show1(help.id);" ng-if="(help.status=='-1')&&(help.userid==currentuser.id)">···</a>
-    <a class="button" ng-click="show2(help.id);" ng-if="(help.status=='0')&&(help.userid==currentuser.id)">···</a>
-    <a class="button" ng-click="show3(help.id);" ng-if="(help.status=='1')&&(help.userid==currentuser.id)">···</a>
+    <a class="button icon ion-more" ng-click="show1(help.id);" ng-if="(help.status=='-1')&&(help.userid==currentuser.id)"></a>
+    <a class="button icon ion-more" ng-click="show2(help.id);" ng-if="(help.status=='0')&&(help.userid==currentuser.id)"></a>
+    <a class="button icon ion-more" ng-click="show3(help.id);" ng-if="(help.status=='1')&&(help.userid==currentuser.id)"></a>
+
+    <a class="button icon ion-more" ng-click="show4(help.id);" ng-if="(help.status=='0')&&(help.helperid==currentuser.id)"></a>
+
   </ion-nav-buttons>
 
     <ion-content ng-controller="MyHelpDetail_Refresh">
@@ -35,7 +38,8 @@
 
       <div class="list list-inset list-borderless" ng-repeat="comment in comments">
         <div class="item item-body" ng-click="showOrHide(comment.commenter.id,comment.commenter.nickname);">
-          <p>{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
+          <p ng-if="comment.ishelper==0">{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
+          <p style="color: #436EEE" ng-if="comment.ishelper==1">{{comment.commenter.nickname}}&nbsp;评论&nbsp;{{comment.user.nickname}}&nbsp;:&nbsp;{{comment.detail}}</p>
         </div>
       </div>
     </ion-content>

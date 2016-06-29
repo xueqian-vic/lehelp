@@ -1,6 +1,6 @@
 <ion-view view-title="二手专区" >
   <ion-nav-buttons side="right">
-    <a class="button" href="#/tab/add-secondhand" >发布</a>
+    <a class="button button-positive" href="#/tab/add-secondhand" >发布</a>
   </ion-nav-buttons>
   <ion-content ng-controller="Secondhands_Refresh">
     <!-- <ion-refresher> 下拉刷新指令  -->
@@ -22,7 +22,7 @@
               <span class="assertive" style="font-size: smaller;border:1px solid #CD0000;" ng-if="secondhand.flag==0">想要</span>
               <span class="positive" style="font-size: smaller;border:1px solid #436EEE;" ng-if="secondhand.flag==1">我有</span>
               <br>
-              <span class="subdued" style="font-size: smaller;border:1px solid #C1CDC1;" ng-if="secondhand.status==1">已下架</span>
+              <span class="subdued" style="font-size: smaller;border:1px solid #838B8B;" ng-if="secondhand.status==1">已下架</span>
             </div>
           </div>
 
