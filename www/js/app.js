@@ -73,6 +73,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     }
   })
 
+    .state('tab.helps-user', {
+      url: '/helps/user/:username',
+      views: {
+        'tab-helps': {
+          templateUrl: 'templates/helps/tab-helps.html',
+          controller: 'HelpsCtrl'
+        }
+      }
+    })
+
     .state('tab.help-detail', {
       url: '/helps/:helpid',
       views: {
@@ -94,7 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     })
 
     .state('tab.update-help', {
-      url: '/update-help',
+      url: '/update-help/:id/:userid/:helperid/:detail/:image/:coins/:status/:helptime',
       views: {
         'tab-my': {
           templateUrl: 'templates/helps/update-help.html',
@@ -132,7 +142,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     })
     .state('tab.update-secondhand', {
-      url: '/update-secondhand',
+      url: '/update-secondhand/:id/:userid/:flag/:detail/:image/:status',
+
       views: {
         'tab-my': {
           templateUrl: 'templates/secondhands/update-secondhand.html',
