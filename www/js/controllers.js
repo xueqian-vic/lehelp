@@ -10,8 +10,6 @@ angular.module('starter.controllers', ['ngCookies'])
 
     $scope.$on("to-parent",
        function (event, msg) {
-              console.log('mainctrl user--');
-              console.log(msg);
               $rootScope.currentuser = msg;
 
         });
@@ -75,8 +73,6 @@ angular.module('starter.controllers', ['ngCookies'])
                 avatar:req.user.avatar,
                 coins:req.user.coins
               };
-
-              // $scope.$broadcast('to-child-user', $rootScope.currentuser);
 
               console.log('当前登录的user');
               console.log($rootScope.currentuser);
@@ -171,12 +167,10 @@ angular.module('starter.controllers', ['ngCookies'])
       }
   })
 
-  .controller('HelpDetailCtrl',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {
+  .controller('HelpDetailCtrl',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$ionicHistory,$http) {
     $scope.$on('to-child-user', function(e, d) {
       $rootScope.currentuser = d;
     });
-    console.log('this is helpdetail---');
-    console.log($rootScope.currentuser);
     $scope.show_1 = true;
     $scope.show_2 = false;
     $scope.showOrHide=function (commenterid,commenternickname) {
@@ -195,19 +189,18 @@ angular.module('starter.controllers', ['ngCookies'])
     //按id查找help
     $http.get('http://120.27.97.21/lehelp/index.php/home/Help/helpinfo',{params:{'helpid':$stateParams.helpid}}).success(function(data) {
       if(data.status==1) {
-
         $scope.help = data.help;
         $http.get('http://120.27.97.21/lehelp/index.php/home/Help/comments', {params: {'helpid': $stateParams.helpid}}).success(function (responds) {
           if(responds.status==1){
             $scope.comments = responds.comments;
           }
-
         });
       }else{
         $ionicLoading.show({
-          template: "该求助不存在，请刷新",
+          template: "该求助已被删除，请返回刷新重试",
           duration:1000
         });
+        $ionicHistory.goBack();
       }
     });
 
@@ -334,7 +327,6 @@ angular.module('starter.controllers', ['ngCookies'])
           });
         }
       });
-
     }
   })
   .controller('Helps_Refresh',function ($scope,$stateParams,$ionicLoading,$location,$ionicPopup,$ionicActionSheet,$rootScope,$timeout,$http) {
@@ -532,27 +524,6 @@ angular.module('starter.controllers', ['ngCookies'])
     };
 
     $scope.updateHelp = function () {
-
-      if($scope.flagcoins=='1'){
-        $ionicLoading.show({
-          template: "请选择悬赏额",
-          duration: 1000
-        });
-      }
-      else if($scope.leftcoins=='账户余额不足') {
-        $ionicLoading.show({
-          template: "余额不足，无法发布",
-          duration: 1000
-        });
-      }
-      else if(detail.trim()==''){
-        console.log("detail.trim()==''");
-        $ionicLoading.show({
-          template: "求助信息不能为空",
-          duration: 1000
-        });
-      }
-      else {
         var detail = document.getElementById('detail').value;
         var image = '';
         var coins = $scope.flagcoins;
@@ -569,6 +540,26 @@ angular.module('starter.controllers', ['ngCookies'])
           coins: coins,
           status: status
         };
+        if($scope.flagcoins=='1'){
+          $ionicLoading.show({
+            template: "请选择悬赏额",
+            duration: 1000
+          });
+        }
+        else if($scope.leftcoins=='账户余额不足') {
+          $ionicLoading.show({
+            template: "余额不足，无法发布",
+            duration: 1000
+          });
+        }
+        else if(detail.trim()==''){
+          console.log("detail.trim()==''");
+          $ionicLoading.show({
+            template: "求助信息不能为空",
+            duration: 1000
+          });
+        }
+        else {
           //修改求助
           $http({
             method: 'post',
@@ -630,7 +621,7 @@ angular.module('starter.controllers', ['ngCookies'])
       $scope.secondhands =  data.secondhands;
      });
 })
-  .controller('SecondhandDetailCtrl',function ($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,$rootScope,$http) {
+  .controller('SecondhandDetailCtrl',function ($scope,$stateParams,$ionicLoading,$ionicActionSheet,$location,$rootScope,$ionicHistory,$http) {
     // $scope.$on('to-child-user', function(e, d) {
     //   $rootScope.currentuser = d;
     // });
@@ -640,9 +631,10 @@ angular.module('starter.controllers', ['ngCookies'])
         $scope.secondhand =  data.secondhand;
       }else{
         $ionicLoading.show({
-          template: "该二手不存在，请刷新",
+          template: "该二手已被删除，请返回刷新重试",
           duration:1000
         });
+        $ionicHistory.goBack();
       }
 
     });
@@ -737,12 +729,7 @@ angular.module('starter.controllers', ['ngCookies'])
           flag = temp[i].value;
         }
       }
-      if(detail.trim()==''){
-        $ionicLoading.show({
-          template: "二手信息不能为空",
-          duration: 1000
-        });
-      }else {
+
         var postData = {
           userid: userid,
           detail: detail,
@@ -750,6 +737,12 @@ angular.module('starter.controllers', ['ngCookies'])
           flag: flag,
           status: status
         };
+      if(detail.trim()==''){
+        $ionicLoading.show({
+          template: "二手信息不能为空",
+          duration: 1000
+        });
+      }else {
         $http({
           method: 'post',
           url: 'http://120.27.97.21/lehelp/index.php/home/SecondHand/add/session_id/111111',
@@ -1172,7 +1165,7 @@ angular.module('starter.controllers', ['ngCookies'])
           });
         }else{
           $ionicLoading.show({
-            template: "该求助不存在，请刷新",
+            template: "该求助不存在，请返回刷新重试",
             duration:1000
           });
         }
@@ -1311,8 +1304,6 @@ angular.module('starter.controllers', ['ngCookies'])
                     usecoins: $scope.help.coins,
                     flag: 1
                   };
-                  console.log('postdatapostdatapostdatapostdatapostdata');
-                  console.log(postdata);
                   $http({
                     method: 'post',
                     url: 'http://120.27.97.21/lehelp/index.php/home/User/changecoins',
@@ -1546,11 +1537,11 @@ angular.module('starter.controllers', ['ngCookies'])
         $scope.secondhand =  data.secondhand;
       }else{
         $ionicLoading.show({
-          template: "该二手不存在，请刷新",
+          template: "该二手已被删除，请返回刷新重试",
           duration:1000
         });
+        $ionicHistory.goBack();
       }
-
     });
 
     $scope.show1 = function (secondhandid) {
